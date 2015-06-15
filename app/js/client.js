@@ -11,7 +11,7 @@ var freezrApp = angular.module('freezrApp', ['ngRoute', 'ngCookies', 'base64']);
 
 
 //  controllers
-// require('./auth/controllers/auth_controllers')(freezrApp);
+require('./auth/controllers/auth_controllers')(freezrApp);
 
 //  directives
 
