@@ -13,11 +13,12 @@
     "body-parser": "^1.12.4",
     "eat": "^0.1.1",
     "express": "^4.12.4",
+    "mongoose": "^4.0.5",
+    "node-uuid": "^1.4.3",
     "passport": "^0.2.2",
     "passport-http": "^0.2.2",
-    "pg": "^4.4.0",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "^3.2.0",
+    "request": "^2.57.0",
+    "validator": "^3.40.1"
     "angular": "^1.4.0",
     "node-uuid": "^1.4.3",
     "uuid": "^2.0.1"

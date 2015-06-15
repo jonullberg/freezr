@@ -1,20 +1,25 @@
 'use strict';
 
+var mongoose = require('mongoose');
 var express = require('express');
 var passport = require('passport');
-var sequelize = require('sequelize');
 var app = express();
 
-app.use(express.static(__dirname + '/build'));
-app.use(express.static(__dirname + '/app'));
+process.env.APP_SECRET = process.env.APP_SECRET || 'changethischangethischangetis!';
 
 var freezerRoutes = express.Router();
 var usersRoutes = express.Router();
 
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/freezer_dev');
+
 app.use(passport.initialize());
+app.use(express.static(__dirname + '/build'));
+app.use(express.static(__dirname + '/app'));
+
+require('./lib/passport_strat.js')(passport);
 
 //add routes here
-require('./routes/freezer_routes.js')(freezerRoutes);
+//require('./routes/freezer_routes.js')(freezerRoutes);
 require('./routes/auth_routes.js')(usersRoutes, passport);
 
 app.use('/api', freezerRoutes);
