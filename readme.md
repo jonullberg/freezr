@@ -5,7 +5,7 @@
 Freezr is an application that allows uers to store their personal food inventory, keeps track of food expiration dates and recommends recipes to use their expiring food. Recipes are provided by the Yummly API http://api.yummly.com/v1.
 
 ## Installation
----
+-----
 To install, simply clone this repository and
 
     npm install
@@ -34,9 +34,27 @@ This will install all necessary dependencies.
 ```
 {
     success: BOOL,
-    message: STRING
+    token: STRING
 }
 ```
+### *Authenticate Existing User* > GET /api/sign_in
+**PURPOSE** - This endpoint is used to authenticate an existing user by confirming their password and email combination, giving them a token to keep persistence.
+
+**HEADERS** - This endpoint requires the users email and password to be passed in through an authorization header which consists of email:password that have been base64 encrypted.
+The format should look like.
+
+`Authorization: Basic <base64 encoded email:password> `
+
+**BODY** - This endpoint does not require any information in the request body.
+
+**RESPONSE** - Upon validation success the server will send back a response in the following syntax:
+```
+{
+    success: BOOL,
+    token: STRING
+}
+```
+Upon validation failure, the server will send back the same response but without the token key.
 
 ### Authors
 ---
