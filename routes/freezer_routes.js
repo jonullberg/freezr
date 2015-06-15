@@ -1,7 +1,7 @@
 'use strict';
 
 var bodyparser = require('body-parser');
-var Storage = require('../models/Storage.js');
+var Items = require('../models/Items.js');
 var Sql = require('sequelize');
 var sql = new Sql('freezer_dev', 'freezer_dev', 'foobar123', {
   dialect: 'postgres'
@@ -11,10 +11,10 @@ module.exports = function(router) {
   router.use(bodyparser.json());
 
   //add RESTful APIs here
-  router.post('/storage', function(req, res) {
+  router.post('/food_items', function(req, res) {
     sql.sync()
       .then(function() {
-        Storage.create(req.body)
+        Items.create(req.body)
           .then(function(data) {
             res.json(data);
           })
@@ -25,10 +25,10 @@ module.exports = function(router) {
       });
   });
 
-  router.get('/storage', function(req, res) {
+  router.get('/food_items', function(req, res) {
     sql.sync()
       .then(function() {
-        Storage.all()
+        Items.all()
           .then(function(data) {
             res.json(data);
           })
