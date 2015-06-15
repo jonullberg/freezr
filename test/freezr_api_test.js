@@ -29,10 +29,7 @@ describe('api users routes', function() {
       .end(function(err, res) {
         newToken = res.body.token;
         expect(err).to.eql(null);
-        expect(res.body.username).to.eql('testuser');
-        expect(res.body.email).to.eql('testuser@test.com');
         expect(res.body).to.have.property('token');
-        expect(res.body.msg).to.eql(/*something*/);
         //possibly add property test of sql db
         done();
       });

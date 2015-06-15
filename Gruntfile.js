@@ -12,20 +12,20 @@ module.exports = function(grunt) {
   grunt.initConfig({
     simplemocha: {
       options: {
-      globals: ['should', 'window'],
+      globals: ['should', 'window', 'done', 'lr'],
       timeout: 3000,
       ignoreLeaks: false,
       ui: 'bdd',
       reporter: 'tap'
     },
     all: {
-      src: ['tests/freezr_api_test.js']
+      src: ['test/freezr_api_test.js']
     }
   },
 
     jshint: {
        jasmine: {
-        src: ['tests/karma-test/*test.js'],
+        src: ['test/karma-test/*test.js'],
         options: {
           globals: {
             angular: true,
@@ -40,12 +40,12 @@ module.exports = function(grunt) {
         }
       },
       dev: {
-        src: ['*.js', 'tests/**/*.js', 'models/**/*.js', 'routes/**/*.js', 'lib/**/*.js',
+        src: ['*.js', 'test/**/*.js', 'models/**/*.js', 'routes/**/*.js', 'lib/**/*.js',
         'app/js/**/*.js']
       },
       options: {
         node: true,
-        ignores: ['build/', 'tests/client/bundle.js', 'tests/karma-test/bundle.js'],
+        ignores: ['build/', 'test/client/bundle.js', 'test/karma-test/bundle.js'],
         globals: {
           describe: true,
           it: true,
@@ -56,7 +56,8 @@ module.exports = function(grunt) {
           expect: true,
           angular: true,
           window: true,
-          document: true
+          document: true,
+          done: true
         }
       }
     },
@@ -70,8 +71,8 @@ module.exports = function(grunt) {
         }
       },
       scripts: {
-        files: ['*.js', 'models/**/*.js', 'tests/**/*.js', 'routes/**/*.js', 'lib/**/*.js',
-          'app/**/*.js', 'app/**/*.html', 'tests/client/test.html'],
+        files: ['*.js', 'models/**/*.js', 'test/**/*.js', 'routes/**/*.js', 'lib/**/*.js',
+          'app/**/*.js', 'app/**/*.html', 'test/client/test.html'],
         tasks: ['build'],
         options: {
           event: ['added', 'deleted', 'changed']
@@ -89,9 +90,9 @@ module.exports = function(grunt) {
       },
 
       karmaTest: {
-        entry: __dirname + '/tests/karma-test/test-entry.js',
+        entry: __dirname + '/test/karma-test/test-entry.js',
         output: {
-          path: 'tests/karma-test/',
+          path: 'test/karma-test/',
           file: 'bundle.js'
         }
       }
