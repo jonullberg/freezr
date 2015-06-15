@@ -23,6 +23,7 @@ var User = module.exports = sql.define('User', {
 }, {
   classMethods: {
     generateHash: function(password, callback) {
+      console.log('generate hash');
       bcrypt.genSalt(8, function(err, salt) {
         if (err) {
           return console.log(err);
