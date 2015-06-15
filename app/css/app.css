@@ -1,0 +1,13 @@
+.authSection {
+  border: 3px solid #000;
+  border-radius: 5px;
+  margin: 0 auto;
+  height:500px;
+  width:50%;
+}
+
+.authSection label {
+  display:block;
+}
+
+
