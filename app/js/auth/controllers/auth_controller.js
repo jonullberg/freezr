@@ -6,9 +6,14 @@ module.exports = function(app) {
     if (auth.isSignedIn()) $location.path('/landing_page');
 
     $scope.errors = [];
+
     $scope.authSubmit = function(user) {
-      if(user.password_confirmation) {
-        if(user.password !== user.password_confirmation) return $scope.errors.push({ msg: 'Your password and confirmation do not match' });
+      if(user.password_conf) {
+        if(user.password !== user.password_conf) {
+
+          window.alert('Your password and confirmation do not match');
+          return;
+        }
         auth.create(user, function(err) {
           if(err)  {
             console.log(err);
@@ -18,7 +23,7 @@ module.exports = function(app) {
           $location.path('/landing_page');
         });
       } else {
-        auth.signIn(user, function(err) {
+      auth.signIn(user, function(err) {
           if(err) {
             console.log(err);
             return $scope.errors.push({ msg: 'Could not sign in' });
