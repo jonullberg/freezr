@@ -15,7 +15,6 @@ require('./auth/controllers/auth_controller')(freezrApp);
 
 //  directives
 require('./directives/header_directive')(freezrApp);
-require('./directives/footer_directive')(freezrApp);
 require('./auth/directives/logout_directive')(freezrApp);
 
 freezrApp.config(['$routeProvider', function($routeProvider) {
