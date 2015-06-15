@@ -44,7 +44,7 @@ describe('api users routes', function() {
       .get('/api/sign_in')
       .set('email', 'testuser@test.com')
       .set('password', 'test')
-      .set('eat', newEat)
+      .set('token', newEat)
       .end(function(err, res) {
         expect(err).to.eql(null);
         //possibly add more expects here
