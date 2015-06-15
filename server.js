@@ -2,17 +2,20 @@
 
 var express = require('express');
 var passport = require('passport');
+var sequelize = require('sequelize');
 var app = express();
-
-var freezerRoutes = express.Router();
-var usersRoutes = express.Router();
 
 app.use(express.static(__dirname + '/build'));
 app.use(express.static(__dirname + '/app'));
 
+var freezerRoutes = express.Router();
+var usersRoutes = express.Router();
+
+app.use(passport.initialize());
+
 //add routes here
 require('./routes/freezer_routes.js')(freezerRoutes);
-require('./routes/auth_routes.js')(usersRoutes);
+require('./routes/auth_routes.js')(usersRoutes, passport);
 
 app.use('/api', freezerRoutes);
 app.use('/api', usersRoutes);

@@ -9,19 +9,18 @@ var eat = require('eat');
 
 var User = module.exports = sql.define('User', {
   username: {type: Sql.STRING, allowNull: false, unique: true},
-  basic: {
-    email: {type: Sql.STRING, unique: true,
-      validate: {
-        isEmail: true
-      }
-    },
-    password: {type: Sql.STRING,
-      validate: {
-        notEmpty: true,
-        notNull: true
-      }
+  email: {type: Sql.STRING, unique: true,
+    validate: {
+      isEmail: true
     }
   },
+  password: {type: Sql.STRING,
+    validate: {
+      notEmpty: true,
+      notNull: true
+    }
+  }
+}, {
   classMethods: {
     generateHash: function(password, callback) {
       bcrypt.genSalt(8, function(err, salt) {
