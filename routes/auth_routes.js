@@ -54,5 +54,15 @@ module.exports = function(router, passport) {
     });//end generateHash
   });//end POST
 
-  
+  router.get('/sign_in', passport.authenticate('basic', {session:false}), function(req, res) {
+    req.user.generateToken(process.env.APP_SECRET, function(err, token) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'error generating token'});
+      }
+
+      res.json({msg: 'authenticated as: ' + req.user.basic.email, token: token});
+      });
+    });
+  });
 };
