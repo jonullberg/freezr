@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       reporter: 'tap'
     },
     all: {
-      src: ['tests/freezer_api_test.js']
+      src: ['tests/freezr_api_test.js']
     }
   },
 
