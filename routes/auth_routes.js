@@ -62,7 +62,6 @@ module.exports = function(router, passport) {
       }
 
       res.json({msg: 'authenticated as: ' + req.user.basic.email, token: token});
-      });
-    });
-  });
+    });//end generateToken
+  });//end GET
 };
