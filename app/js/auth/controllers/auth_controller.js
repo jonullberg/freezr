@@ -3,7 +3,25 @@
 module.exports = function(app) {
   app.controller('authController', ['$scope', '$location', 'auth', function($scope, $location, auth) {
 
-    if (auth.isSignedIn()) $location.path('/landing_page');
+    $scope.tabs = [{
+      title: 'Create User',
+      url: '../templates/directives/create_user.html'
+    }, {
+      title: 'Sign In',
+      url: '../templates/directives/sign_in.html'
+    }];
+
+    $scope.currentTab = '../templates/directives/sign_in.html';
+
+    $scope.onClickTab = function(tab) {
+      $scope.currentTab = tab.url;
+    };
+
+    $scope.isActiveTab = function(tabUrl) {
+      return tabUrl === $scope.currentTab;
+    };
+
+    if(auth.isSignedIn()) $location.path('/landing_page');
 
     $scope.errors = [];
 

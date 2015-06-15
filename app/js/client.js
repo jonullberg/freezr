@@ -15,15 +15,19 @@ require('./auth/controllers/auth_controller')(freezrApp);
 
 //  directives
 require('./directives/header_directive')(freezrApp);
+require('./auth/directives/logout_directive')(freezrApp);
+require('./auth/directives/sign_in_directive')(freezrApp);
+require('./auth/directives/create_user_directive')(freezrApp);
+
 
 freezrApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/sign_in', {
-      templateUrl: 'templates/views/sign_in.html',
+      templateUrl: 'templates/views/auth.html',
       controller: 'authController'
     })
     .when('/create_user', {
-      templateUrl: 'templates/views/create_user.html',
+      templateUrl: 'templates/views/auth.html',
       controller: 'authController'
     })
     .when('/', {
