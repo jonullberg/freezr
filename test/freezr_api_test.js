@@ -10,6 +10,7 @@ var expect = chai.expect;
 var User = require('../models/User'); //double-check naming
 var bodyparser = require('body-parser');
 var eat = require('eat');
+var app = 'localhost:3000';
 
 describe('api users routes', function() {
   after(function(done) {
@@ -21,7 +22,7 @@ describe('api users routes', function() {
   var newToken;
 
   it('should be able to create a test user', function(done) {
-    chai.request('localhost:3000')
+    chai.request(app)
       .post('/api/create_user')
       .send({username: 'testuser',
              email: 'testuser@test.com',
@@ -29,17 +30,13 @@ describe('api users routes', function() {
       .end(function(err, res) {
         newToken = res.body.token;
         expect(err).to.eql(null);
-        expect(res.body.username).to.eql('testuser');
-        expect(res.body.email).to.eql('testuser@test.com');
         expect(res.body).to.have.property('token');
-        expect(res.body.msg).to.eql(/*something*/);
-        //possibly add property test of sql db
         done();
       });
   });
 
   it('should be able to sign in the test user', function(done) {
-    chai.request('localhost:3000')
+    chai.request(app)
       .get('/api/sign_in')
       .set('email', 'testuser@test.com')
       .set('password', 'test')

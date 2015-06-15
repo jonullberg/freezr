@@ -48,7 +48,9 @@ module.exports = function(router, passport) {
             return res.status(500).json({msg: 'error generating token'});
           }
 
-          res.json({token: token});
+          res.json({
+            token: token
+          });
         });//end generateToken
       });//end save
     });//end generateHash
