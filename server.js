@@ -19,7 +19,7 @@ app.use(express.static(__dirname + '/app'));
 require('./lib/passport_strat.js')(passport);
 
 //add routes here
-//require('./routes/freezer_routes.js')(freezerRoutes);
+require('./routes/freezer_routes.js')(freezerRoutes);
 require('./routes/auth_routes.js')(usersRoutes, passport);
 
 app.use('/api', freezerRoutes);
