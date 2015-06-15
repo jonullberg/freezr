@@ -1,0 +1,16 @@
+  header {
+    width:100%;
+    height:100px;
+    background-color: #bbeeff;
+  }
+  .logo {
+    font-family:lato;
+    font-size:64px;
+    font-weight:500;
+    float:left;
+    padding:10px 0 0 25px;
+  }
+  .nav-main, .logout {
+    float:right;
+    margin:20px;
+  }
