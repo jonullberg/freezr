@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (app) {
-  app.directive('logoutDirective', function() {
+  app.directive('logoutDirective', ['$rootScope', function($rootScope) {
   return {
     restrict: 'AC',
     replace: false,
@@ -15,9 +15,10 @@ module.exports = function (app) {
         };
       $scope.logout = function () {
         auth.logout();
+        $rootScope.loggedIn = false;
         $location.path('/sign_in');
         };
       }]
     };
-  });
+  }]);
 };

@@ -50,6 +50,7 @@ module.exports = function(app) {
             return $scope.errors.push({ msg: 'Could not sign in' });
           }
 
+          $rootScope.loggedIn = auth.isSignedIn();
           $location.path('/homepage');
         });
       }
