@@ -8,8 +8,22 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-sass');
 
   grunt.initConfig({
+    sass: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        options: {
+          includePaths: require('node-bourbon').includePaths
+        },
+        files: {
+          'app/css/main.css': 'sass/main.scss'
+        }
+      }
+    },
     simplemocha: {
       options: {
       globals: ['should', 'window', 'lr'],
@@ -123,7 +137,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('build:dev', ['jshint', 'webpack:client', 'simplemocha', 'webpack:karmaTest', 'karma:test', 'copy:html']);
+  grunt.registerTask('build:dev', ['jshint', 'sass', 'webpack:client', 'webpack:karmaTest', 'karma:test', 'copy:html']);
   grunt.registerTask('test', ['jshint', 'build:dev', 'simplemocha']);
   grunt.registerTask('karmatest', ['webpack:karmaTest', 'karma:test']);
   grunt.registerTask('default', ['build:dev']);
