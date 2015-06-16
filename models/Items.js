@@ -12,8 +12,7 @@ var itemsSchema = mongoose.Schema({
   qty: Number,
   qtyType: String,
   cost: Number,
-  storageType: String,
-  _creator: {type: Number, ref: 'User'}
+  storageType: String
 });
 
 module.exports = mongoose.model('Items', itemsSchema);
