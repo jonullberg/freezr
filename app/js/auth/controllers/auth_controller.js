@@ -23,6 +23,8 @@ module.exports = function(app) {
 
     if(auth.isSignedIn()) $location.path('/homepage');
 
+    if (!auth.isSignedIn()) $location.path('/sign_in');
+
     $scope.errors = [];
 
     $scope.authSubmit = function(user) {
