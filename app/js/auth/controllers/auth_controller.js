@@ -21,7 +21,7 @@ module.exports = function(app) {
       return tabUrl === $scope.currentTab;
     };
 
-    if(auth.isSignedIn()) $location.path('/landing_page');
+    if(auth.isSignedIn()) $location.path('/homepage');
 
     $scope.errors = [];
 
