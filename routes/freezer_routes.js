@@ -27,7 +27,7 @@ module.exports = function(router) {
         return res.status(500).json({msg: 'internal server error'});
       }
 
-      res.send(data);
+      res.json(data);
     });
   });//end GET
 
