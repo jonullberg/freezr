@@ -1,7 +1,7 @@
 'use strict';
 
 var server = require('../server');
-process.env.MONGOLAB_URI = 'mongodb://localhost/freezer_dev';
+process.env.MONGOLAB_URI = 'mongodb://localhost/freezer_dev_test';
 var mongoose = require('mongoose');
 var chai = require('chai');
 var chaiHttp = require('chai-http');
