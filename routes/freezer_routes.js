@@ -30,4 +30,10 @@ module.exports = function(router) {
       res.json(data);
     });
   });//end GET
+
+  /*TODO ~~~~~~~
+  * need to add filter search GET request
+  */
+
+
 };
