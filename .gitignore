@@ -3,5 +3,3 @@
 build/
 db/
 test/karma-test/bundle.js
-*.css
-*.map
