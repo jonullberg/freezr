@@ -35,5 +35,28 @@ module.exports = function(router) {
   * need to add filter search GET request
   */
 
-  //remove comment later, this is only so i can commit a change to close a waffle ticket
+  router.put('/food_items/:id', function(req, res) {
+    var updatedItem = req.body;
+    delete updatedItem._id;
+
+    Items.update({'_id': req.params.id}, updatedItem, function(err, data) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'internal server error'});
+      }
+
+      res.json({msg: 'success'});
+    });//end update
+  });//end PUT method
+
+  router.delete('/food_items/:id', function(req, res) {
+    Items.remove({'_id': req.params.id}, function(err, data) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'internal server error'});
+      }
+
+      res.json({msg: 'success'});
+    });//end remove method
+  });//end delete method
 };
