@@ -1,0 +1,7 @@
+<section data-ng-controller="foodController">
+  <input type="text" placeholder="Search your freezr">
+  <h2>Your Inventory</h2>
+  <ul dat-ng-repeat="item in items">
+    <li>{{item.itemType}}</li>
+  </ul>
+</section>
