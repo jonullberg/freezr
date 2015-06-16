@@ -13,11 +13,18 @@ module.exports = function(app) {
     $scope.getDisplayedItems = function(num, start) {
       var thisStart = 0;
       if(start) thisStart = start;
-      $scope.getAll();
-      $scope.displayedItems = $scope.allItems.slice(start, num);
+      Item.getAll(function(err, data) {
+        console.log(data);
+        if(err) {
+          return $scope.errors.push({msg: 'error retrieving food items'});
+        }
+        $scope.displayedItems = data.slice(thisStart, num);
+      });
     };
 
-    $scope.getAll = function() {
+    $scope.getDisplayedItems(15);
+
+    $scope.getAll = function(callback) {
       Item.getAll(function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'error retrieving food items'});
@@ -29,19 +36,19 @@ module.exports = function(app) {
     $scope.createNewItem = function(item) {
       var newItem = item;
       item = null;
-      $scope.items.push(newItem);
-
+      $scope.allItems.push(newItem);
+      console.log($scope.allItems);
       Item.create(newItem, function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'could not save item: ' + newItem.itemID});
         }
-        $scope.items.splice($scope.items.indexOf(newItem), 1, data);
+        $scope.allItems.splice($scope.allItems.indexOf(newItem), 1, data);
       });
     };
 
     $scope.removeItem = function(item) {
       //select item to delete
-      $scope.items.splice($scope.items.indexOf(item), 1);
+      $scope.allItems.splice($scope.allItems.indexOf(item), 1);
       //delete item selected
       Item.remove(item, function(err) {
         if (err) {
