@@ -4,13 +4,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var itemsSchema = mongoose.Schema({
-  itemID: String,
   itemType: String,
-  brand: String,
-  exp: String,
+  itemName: String,
+  exp: Date,
   qty: Number,
+  qtyType: String,
   cost: Number,
-  storageType: String
+  storageType: String,
+  _creator: {type: Number, ref: 'User'}
 });
 
 module.exports = mongoose.model('Items', itemsSchema);
