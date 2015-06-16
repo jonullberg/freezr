@@ -13,11 +13,12 @@ module.exports = function(app) {
     $scope.getDisplayedItems = function(num, start) {
       var thisStart = 0;
       if(start) thisStart = start;
+
       Item.getAll(function(err, data) {
-        console.log(data);
         if(err) {
           return $scope.errors.push({msg: 'error retrieving food items'});
         }
+
         $scope.displayedItems = data.slice(thisStart, num);
       });
     };
@@ -34,10 +35,13 @@ module.exports = function(app) {
     };
 
     $scope.createNewItem = function(item) {
+      //insert imageURL to item object depending on itemType
+      $scope.populateImages(item);
+
       var newItem = item;
       item = null;
+
       $scope.allItems.push(newItem);
-      console.log($scope.allItems);
       Item.create(newItem, function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'could not save item: ' + newItem.itemID});
@@ -80,5 +84,24 @@ module.exports = function(app) {
       $scope.errors = [];
       $scope.getAll();
     };
+
+    $scope.populateImages = function(item) {
+      if (item.itemType == 'vegetable') {
+        item.imageURL = 'http://news.psu.edu/sites/default/files/styles/threshold-992/public/FarmMarket_NatalieMaynor_Flickr.jpg';
+      }
+
+      if (item.itemType == 'fruit') {
+        item.imageURL = 'http://modernfarmer.com/wp-content/uploads/2014/06/berry_basket.jpg';
+      }
+
+      if (item.itemType == 'meat') {
+        item.imageURL = 'http://www.countryvalley.co.uk/images/country-valley-foods-small-bbq-meat-box-hamper-p82-117_zoom.jpg';
+      }
+
+      if (item.itemType == 'fish') {
+        item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
+      }
+    };
+
   }]);
 };
