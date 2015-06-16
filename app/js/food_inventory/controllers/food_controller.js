@@ -3,18 +3,26 @@
 module.exports = function(app) {
   app.controller('foodController', ['$scope', '$http', 'RESTResource', function($scope, $http, resource) {
     //can change name later, Item (single) Items (plural)
-    var Item = resource('items');
+    var Item = resource('food_items');
     //hold errors
     $scope.errors = [];
     //hold food item objects
-    $scope.items = [];
+    $scope.allItems = [];
+    $scope.displayedItems = [];
+
+    $scope.getDisplayedItems = function(num, start) {
+      var thisStart = 0;
+      if(start) thisStart = start;
+      $scope.getAll();
+      $scope.displayedItems = $scope.allItems.slice(start, num);
+    };
 
     $scope.getAll = function() {
       Item.getAll(function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'error retrieving food items'});
         }
-        $scope.items = data;
+        $scope.allItems = data;
       });
     };
 
