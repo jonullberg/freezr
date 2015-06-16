@@ -31,8 +31,9 @@ freezrApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'templates/views/auth.html',
       controller: 'authController'
     })
-    .when('/', {
-      redirectTo: '/create_user' // Where should we land?
+    .when('/homepage', {
+      templateUrl: 'templates/views/homepage.html',
+      controller: 'inventoryController'
     })
     .otherwise({
       redirectTo: '/create_user'

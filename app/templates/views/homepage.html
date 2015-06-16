@@ -1,0 +1,12 @@
+<section data-ng-controller="foodController">
+  <input type="text" placeholder="Search your freezr">
+  <h2>Your Inventory</h2>
+  <ul dat-ng-repeat="item in items">
+    <li>
+      <img src="{{item.imageURL}}" alt="{{item.caption}}" />
+      {{item.itemName}}
+      <span id="expires">Expires by {{item.exp}}</span>
+      <span id="{{item.storageType}}"></span>
+    </li>
+  </ul>
+</section>

@@ -38,7 +38,7 @@ module.exports = function(app) {
             return $scope.errors.push({ msg: 'Could not sign in' });
           }
 
-          $location.path('/landing_page');
+          $location.path('/homepage');
         });
       } else {
       auth.signIn(user, function(err) {
@@ -47,7 +47,7 @@ module.exports = function(app) {
             return $scope.errors.push({ msg: 'Could not sign in' });
           }
 
-          $location.path('/landing_page');
+          $location.path('/homepage');
         });
       }
     };
