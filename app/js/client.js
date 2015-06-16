@@ -44,7 +44,7 @@ freezrApp.config(['$routeProvider', function($routeProvider) {
 }])
 .run( function($rootScope, $location, auth) {
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
-    if(!$rootScope.loggedIn) {
+    if(!auth.isSignedIn()) {
       if(next.$$route.templateUrl !== 'templates/views/auth.html') {
         console.log(next.$$route);
         $location.path('/sign_in');
