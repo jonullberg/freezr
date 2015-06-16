@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('authController', ['$scope', '$location', 'auth', function($scope, $location, auth) {
+  app.controller('authController', ['$scope', '$location', '$rootScope', 'auth', function($scope, $location, $rootScope, auth) {
 
     $scope.tabs = [{
       title: 'Create User',
@@ -23,6 +23,8 @@ module.exports = function(app) {
 
     if(auth.isSignedIn()) $location.path('/homepage');
 
+    if (!auth.isSignedIn()) $location.path('/sign_in');
+
     $scope.errors = [];
 
     $scope.authSubmit = function(user) {
@@ -37,7 +39,8 @@ module.exports = function(app) {
             console.log(err);
             return $scope.errors.push({ msg: 'Could not sign in' });
           }
-
+          $rootScope.loggedIn = auth.isSignedIn();
+          console.log($rootScope.loggedIn);
           $location.path('/homepage');
         });
       } else {
@@ -47,6 +50,7 @@ module.exports = function(app) {
             return $scope.errors.push({ msg: 'Could not sign in' });
           }
 
+          $rootScope.loggedIn = auth.isSignedIn();
           $location.path('/homepage');
         });
       }

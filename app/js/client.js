@@ -41,4 +41,14 @@ freezrApp.config(['$routeProvider', function($routeProvider) {
     .otherwise({
       redirectTo: '/create_user'
     });
-}]);
+}])
+.run( function($rootScope, $location, auth) {
+  $rootScope.$on("$routeChangeStart", function(event, next, current) {
+    if(!$rootScope.loggedIn) {
+      if(next.$$route.templateUrl !== 'templates/views/auth.html') {
+        console.log(next.$$route);
+        $location.path('/sign_in');
+      }
+    }
+  });
+});
