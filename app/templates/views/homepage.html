@@ -2,6 +2,11 @@
   <input type="text" placeholder="Search your freezr">
   <h2>Your Inventory</h2>
   <ul dat-ng-repeat="item in items">
-    <li>{{item.itemType}}</li>
+    <li>
+      <img src={{item.imageURL}} alt={{item.caption}} />
+      {{item.name}}
+      <span id="expires">Expires by {{item.exp}}</span>
+      <span id='{{item.storageType}}'></span>
+    </li>
   </ul>
 </section>
