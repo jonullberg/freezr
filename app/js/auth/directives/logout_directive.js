@@ -4,10 +4,10 @@ module.exports = function (app) {
   app.directive('logoutDirective', function() {
   return {
     restrict: 'AC',
-    replace: true,
+    replace: false,
     scope: {},
     template: '<div data-ng-show="signedIn()"><button type="button"' +
-    'data-ng-click="logout()">Log Out</button></div>',
+    'data-ng-click="logout()" class="pure-button button-blue">logout</button></div>',
     controller: ['$scope', '$location', 'auth',
       function($scope, $location, auth) {
       $scope.signedIn = function() {
