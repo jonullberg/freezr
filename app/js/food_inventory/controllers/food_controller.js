@@ -20,7 +20,6 @@ module.exports = function(app) {
         }
         $scope.displayedItems = data.slice(thisStart, num);
       });
-      // $scope.displayedItems = $scope.allItems.slice(start, num);
     };
 
     $scope.getDisplayedItems(15);
