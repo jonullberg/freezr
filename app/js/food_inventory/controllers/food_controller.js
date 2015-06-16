@@ -29,19 +29,19 @@ module.exports = function(app) {
     $scope.createNewItem = function(item) {
       var newItem = item;
       item = null;
-      $scope.items.push(newItem);
-
+      $scope.allItems.push(newItem);
+      console.log($scope.allItems);
       Item.create(newItem, function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'could not save item: ' + newItem.itemID});
         }
-        $scope.items.splice($scope.items.indexOf(newItem), 1, data);
+        $scope.allItems.splice($scope.allItems.indexOf(newItem), 1, data);
       });
     };
 
     $scope.removeItem = function(item) {
       //select item to delete
-      $scope.items.splice($scope.items.indexOf(item), 1);
+      $scope.allItems.splice($scope.allItems.indexOf(item), 1);
       //delete item selected
       Item.remove(item, function(err) {
         if (err) {

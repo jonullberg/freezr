@@ -1,34 +1,34 @@
-<section class="newItem" name="inventoryForm" data-ng-submit="save({item: item})">
+<form class="newItem" name="inventoryForm" data-ng-submit="save({item: item})">
   <label>Item Type: </label>
-  <select>
-    <option data-ng-model="item.itemType" value="vegetable">Vegetable</option>
-    <option data-ng-model="item.itemType" value="fruit">Fruit</option>
-    <option data-ng-model="item.itemType" value="meat">Meat</option>
-    <option data-ng-model="item.itemType" value="fish">Fish</option>
+  <select data-ng-model="item.itemType">
+    <option value="vegetable">Vegetable</option>
+    <option value="fruit">Fruit</option>
+    <option value="meat">Meat</option>
+    <option value="fish">Fish</option>
   </select>
   <label>Item Name: </label>
-  <input type="text" required placeholder="item name" data-ng-model="item.itemName">
+  <input type="text" placeholder="item name" data-ng-model="item.itemName">
   <label>Expiration Date: </label>
-  <input type="date" required placeholder="YYYY-MM-DD" data-ng-model="item.exp">
+  <input type="date" data-ng-model="item.exp">
   <label>Qty: </label>
-  <input type="number" required placeholder="# of items" data-ng-model="item.qty">
+  <input type="number" placeholder="# of items" data-ng-model="item.qty">
   <label>Qty Type: </label>
-  <select>
-    <option>oz</option>
-    <option>fl oz</option>
-    <option>cup</option>
-    <option>lb</option>
+  <select data-ng-model="item.qtyType">
+    <option value="oz">oz</option>
+    <option value="fl oz">fl oz</option>
+    <option value="cup">cup</option>
+    <option value="lb">lb</option>
   </select>
   <label>Cost: </label>
-  <input type="number" required placeholder="cost" data-ng-model="item.cost">
+  <input type="number" placeholder="cost" data-ng-model="item.cost">
   <label>Storage: </label>
-  <select>
-    <option data-ng-model="item.storageType" value="refrigerator">Refrigerator</option>
-    <option data-ng-model="item.storageType" value="freezer">Freezer</option>
-    <option data-ng-model="item.storageType" value="pantry">Pantry</option>
-    <option data-ng-model="item.storageType" value="cabinet">Cabinet</option>
+  <select data-ng-model="item.storageType">
+    <option value="refrigerator">Refrigerator</option>
+    <option value="freezer">Freezer</option>
+    <option value="pantry">Pantry</option>
+    <option value="cabinet">Cabinet</option>
   </select>
-  <button class="btn submit" type="submit" data-ng-disabled="inventoryForm.$invalide">{{buttonText}}</button>
+  <button type="submit">{{buttonText}}</button>
   <!-- this allows our button to show -->
   <div data-ng-transclude></div>
-</section>
+</form>

@@ -1,7 +1,7 @@
 <section data-ng-controller="foodController" data-ng-init="getDisplayedItems(15)">
   <input type="text" placeholder="Search your freezr">
   <h2>Your Inventory</h2>
-  <ul dat-ng-repeat="item in displayedItems">
+  <ul dat-ng-repeat="item in allItems">
     <li>
       <img src="{{item.imageURL}}" alt="{{item.caption}}" />
       {{item.itemName}}
@@ -9,4 +9,8 @@
       <span id="{{item.storageType}}"></span>
     </li>
   </ul>
+  <h2>Add More Items</h2>
+  <div data-inventory-form-directive
+        data-save="createNewItem(item)"
+        data-button-text="'Add Item'"></div>
 </section>
