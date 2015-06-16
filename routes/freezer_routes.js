@@ -46,6 +46,17 @@ module.exports = function(router) {
       }
 
       res.json({msg: 'success'});
-    });
+    });//end update
   });//end PUT method
+
+  router.delete('/food_items/:id', function(req, res) {
+    Items.remove({'_id': req.params.id}, function(err, data) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'internal server error'});
+      }
+
+      res.json({msg: 'success'});
+    });//end remove method
+  });//end delete method
 };
