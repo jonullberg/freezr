@@ -101,9 +101,27 @@ ul {
 .authSection {
   border-radius: 10px;
   background: #4DAEBF;
-  opacity:0.9;
+  opacity:0.93;
   padding: 20px;
   width: 500px;
   height: auto;
   margin:auto;
+}
+
+.pure-form-aligned .pure-control-group label {
+  display: inline-block;
+  margin: 0 1em 0 0;
+  text-align: right;
+  vertical-align: middle;
+  width: 6em;
+}
+
+.pure-form-aligned .pure-controls {
+  margin: 1.5em 0 0 7.3em;
+}
+.pure-form input[type="email"],
+.pure-form input[type="password"],
+.pure-form input[type="text"]
+{
+  width:15em;
 }
