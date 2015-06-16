@@ -43,7 +43,7 @@ module.exports = function(app) {
       /**
        *
        */
-      $http.defaults.headers.common['token'] = token;
+      $http.defaults.headers.common.token = token;
       return {
 
         /**
