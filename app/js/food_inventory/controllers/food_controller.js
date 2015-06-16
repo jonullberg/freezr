@@ -13,11 +13,18 @@ module.exports = function(app) {
     $scope.getDisplayedItems = function(num, start) {
       var thisStart = 0;
       if(start) thisStart = start;
-      $scope.getAll();
-      $scope.displayedItems = $scope.allItems.slice(start, num);
+      Item.getAll(function(err, data) {
+        console.log(data);
+        if(err) {
+          return $scope.errors.push({msg: 'error retrieving food items'});
+        }
+        $scope.displayedItems = data.slice(thisStart, num);
+      });
     };
 
-    $scope.getAll = function() {
+    $scope.getDisplayedItems(15);
+
+    $scope.getAll = function(callback) {
       Item.getAll(function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'error retrieving food items'});
