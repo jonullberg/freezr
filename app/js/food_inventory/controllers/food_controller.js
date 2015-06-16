@@ -30,7 +30,7 @@ module.exports = function(app) {
         if (err) {
           return $scope.errors.push({msg: 'error retrieving food items'});
         }
-        callback(data);
+        $scope.allItems = data;
       });
     };
 
