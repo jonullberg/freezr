@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('foodController', ['$scope', '$http', 'RESTResource', 'foodData', function($scope, $http, resource, foodData) {
+  app.controller('foodController', ['$scope', '$http', '$location', 'RESTResource', 'foodData', function($scope, $http, $location, resource, foodData) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     /**
@@ -20,6 +20,12 @@ module.exports = function(app) {
      */
     $scope.displayedItems = [];
 
+    $scope.saveThisObj = function(thisItem) {
+      foodData.thisObj = foodData.store.filter(function(item) {
+        return item._id === thisItem._id
+      });
+      $location.path('/item');
+    },
     /**
      * Grabs all the items from the server and puts it into an all items variable
      * @param  {Function} callback A function to run on the data

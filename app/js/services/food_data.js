@@ -8,6 +8,7 @@ module.exports = function(app) {
        * @type {Array}
        */
       store: [],
+      thisObj: null,
 
       /**
        * Stores the food data that is passed into it and stores it in an array so data can be passed around the app
