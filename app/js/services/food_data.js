@@ -8,6 +8,11 @@ module.exports = function(app) {
        * @type {Array}
        */
       store: [],
+
+      /**
+       * Stores the object for the current page
+       * @type {object}
+       */
       thisObj: null,
 
       /**
