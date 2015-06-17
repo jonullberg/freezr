@@ -2,13 +2,13 @@
   <input type="text" placeholder="Search your freezr">
   <h2>Your Inventory</h2>
   <ul>
-    <li data-ng-repeat="item in displayedItems" data-ng-click="saveThisObj(item)">
+    <li data-ng-repeat="item in displayedItems" data-ng-click="saveSingleFood(item)">
       <div class="item-wrapper">
         <div class="food-item" style="background-image: url({{item.imageURL}})">
           <!-- <img src={{item.imageURL}} alt={{item.caption}} /> -->
           {{item.itemName}}
           <span id="expires">Expires in {{item.days}} days</span>
-          <span id={{item.storageType}}></span>
+          <span id='storage'>{{item.storageType}}</span>
         </div>
       </div>
     </li>

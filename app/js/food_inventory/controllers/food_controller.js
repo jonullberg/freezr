@@ -20,8 +20,10 @@ module.exports = function(app) {
      */
     $scope.displayedItems = [];
 
-    $scope.saveThisObj = function(thisItem) {
-      foodData.thisObj = foodData.store.filter(function(item) {
+    $scope.singleFood = foodData.singleFood;
+
+    $scope.saveSingleFood = function(thisItem) {
+      foodData.singleFood = foodData.store.filter(function(item) {
         return item._id === thisItem._id
       });
       $location.path('/item');

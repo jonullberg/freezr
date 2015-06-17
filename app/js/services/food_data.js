@@ -8,12 +8,7 @@ module.exports = function(app) {
        * @type {Array}
        */
       store: [],
-
-      /**
-       * Stores the object for the current page
-       * @type {object}
-       */
-      thisObj: null,
+      singleFood: null,
 
       /**
        * Stores the food data that is passed into it and stores it in an array so data can be passed around the app
