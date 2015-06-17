@@ -1,0 +1,8 @@
+superagent localhost:3000/api/food_items post '{
+  "itemName":"ice cream",
+  "imageURL":"http://svsaqua.com/wp-content/uploads/2013/09/dairy-products-300x207.jpg",
+  "caption":"ice cream",
+  "exp":"2015-06-29",
+  "storageType":"Freezer",
+  "itemType":"Dairy"
+}'
