@@ -39,19 +39,18 @@ freezrApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'templates/views/homepage.html',
       controller: 'foodController'
     })
-    // .when('/item/' + item.id, {
-    //   templateUrl: 'mysinglefood.html',
-    //   controller: 'singleFoodController'
-    // })
+    .when('/item', {
+      templateUrl: 'templates/directives/single_food.html',
+      controller: 'foodController'
+    })
     .otherwise({
       redirectTo: '/create_user'
     });
 }])
-.run( function($rootScope, $location, auth) {
+.run( function($rootScope, $location, foodData, auth) {
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
     if(!auth.isSignedIn()) {
       if(next.$$route.templateUrl !== 'templates/views/auth.html') {
-        console.log(next.$$route);
         $location.path('/sign_in');
       }
     }
