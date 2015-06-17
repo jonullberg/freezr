@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('foodController', ['$scope', '$http', 'RESTResource', function($scope, $http, resource) {
+  app.controller('foodController', ['$scope', '$http', 'RESTResource', 'foodData', function($scope, $http, resource, foodData) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     /**
@@ -29,8 +29,8 @@ module.exports = function(app) {
         if (err) {
           return $scope.errors.push({msg: 'error retrieving food items'});
         }
-        $scope.allItems = data;
-        callback($scope.allItems);
+        foodData.storeData(data);
+        callback(foodData.store);
       });
     };
 
