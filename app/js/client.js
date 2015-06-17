@@ -10,6 +10,7 @@ var freezrApp = angular.module('freezrApp', ['ngRoute', 'ngCookies', 'base64']);
 //  services
 require('./services/rest_resources')(freezrApp);
 require('./auth/services/auth_service')(freezrApp);
+require('./services/food_data')(freezrApp);
 
 //  controllers
 require('./auth/controllers/auth_controller')(freezrApp);
@@ -38,6 +39,10 @@ freezrApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'templates/views/homepage.html',
       controller: 'foodController'
     })
+    // .when('/item/' + item.id, {
+    //   templateUrl: 'mysinglefood.html',
+    //   controller: 'singleFoodController'
+    // })
     .otherwise({
       redirectTo: '/create_user'
     });
