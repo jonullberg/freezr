@@ -1,8 +1,13 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('authController', ['$scope', '$location', '$rootScope', 'auth', function($scope, $location, $rootScope, auth) {
+  app.controller('authController', ['$scope', '$location', 'auth', function($scope, $location, auth) {
 
+    /**
+     * An array attached to scope that creates tabbable interface with two properties.
+     * @title {string}
+     * @type {Array}
+     */
     $scope.tabs = [{
       title: 'Create User',
       url: '../templates/directives/create_user.html'
@@ -39,8 +44,6 @@ module.exports = function(app) {
             console.log(err);
             return $scope.errors.push({ msg: 'Could not sign in' });
           }
-          $rootScope.loggedIn = auth.isSignedIn();
-          console.log($rootScope.loggedIn);
           $location.path('/homepage');
         });
       } else {
@@ -50,7 +53,6 @@ module.exports = function(app) {
             return $scope.errors.push({ msg: 'Could not sign in' });
           }
 
-          $rootScope.loggedIn = auth.isSignedIn();
           $location.path('/homepage');
         });
       }
