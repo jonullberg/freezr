@@ -20,6 +20,8 @@ module.exports = function(app) {
         }
 
         $scope.displayedItems = data.slice(thisStart, num);
+        addDaysProperty($scope.displayedItems);
+
       });
     };
 
@@ -33,6 +35,13 @@ module.exports = function(app) {
         $scope.allItems = data;
       });
     };
+
+    function addDaysProperty(arr) {
+      arr.forEach(function(item) {
+        var thisDate = new Date(item.exp);
+        item.days = Math.round((thisDate.getTime() - Date.now()) / 86400000);
+      });
+    }
 
     $scope.createNewItem = function(item) {
       //insert imageURL to item object depending on itemType
