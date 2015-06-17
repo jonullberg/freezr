@@ -125,7 +125,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('build:dev', ['jshint', 'webpack:client', 'webpack:karmaTest', 'karma:test', 'copy:html']);
+  grunt.registerTask('build:dev', ['jshint', 'webpack:client', 'copy:html']);
   grunt.registerTask('test', ['jshint', 'build:dev', 'simplemocha']);
   grunt.registerTask('karmatest', ['webpack:karmaTest', 'karma:test']);
   grunt.registerTask('default', ['build:dev']);
