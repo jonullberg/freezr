@@ -129,4 +129,5 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['jshint', 'build:dev', 'simplemocha']);
   grunt.registerTask('karmatest', ['webpack:karmaTest', 'karma:test']);
   grunt.registerTask('default', ['build:dev']);
+  grunt.registerTask('less',['webpack:client','copy:html']);
 };

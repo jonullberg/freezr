@@ -98,6 +98,10 @@ module.exports = function(app) {
         item.imageURL = 'http://www.countryvalley.co.uk/images/country-valley-foods-small-bbq-meat-box-hamper-p82-117_zoom.jpg';
       }
 
+      if (item.itemType == 'dairy') {
+        item.imageURL = 'http://svsaqua.com/wp-content/uploads/2013/09/dairy-products-300x207.jpg';
+      }
+
       if (item.itemType == 'fish') {
         item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
       }
