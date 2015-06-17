@@ -1,18 +1,25 @@
-<section>
+<section class="your-inventory">
   <input type="text" placeholder="Search your freezr">
   <h2>Your Inventory</h2>
   <ul>
-    <li data-ng-repeat="item in displayedItems" data-ng-click="saveThisObj(item)">
-      <div class="item-wrapper">
-        <div class="food-item" style="background-image: url({{item.imageURL}})">
-          <!-- <img src={{item.imageURL}} alt={{item.caption}} /> -->
-          {{item.itemName}}
-          <span id="expires">Expires in {{item.days}} days</span>
-          <span id={{item.storageType}}></span>
-        </div>
+    <li data-ng-repeat="item in displayedItems" data-ng-click="saveSingleFood(item)>
+      <div class="item-wrapper" style="background-image: url({{item.imageURL}})">
+        <div class="food-item"> <!-- for element inspector adjustment -->
+
+          <div class="item-name">{{item.itemName}}</div>
+
+          <div class="item-location">{{item.storageType.substr(0,1).toUpperCase()}}</div>
+
+          <div class="item-expiry">
+            Expires in<br/>
+            <span class="item-days">{{item.days}}</span><br/>
+             days
+          </div>
       </div>
     </li>
   </ul>
+</section>
+<section class="more-items"> <!-- TODO remove hide css -->
   <h2>Add More Items</h2>
   <div data-inventory-form-directive
         data-save="createNewItem(item)"
