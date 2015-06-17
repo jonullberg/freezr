@@ -34,6 +34,12 @@ module.exports = function(app) {
       });
     };
 
+    function addDaysProperty(arr) {
+      arr.forEach(function(item) {
+        var thisDate = new Date(item.exp);
+        item.days = Math.round((thisDate.getTime() - Date.now()) / 86400000);
+      });
+    }
     /**
      * Grabs all the items from the server and then
      * @param  {[type]} num   [description]
@@ -45,6 +51,7 @@ module.exports = function(app) {
         var thisStart = 0;
         if(start) thisStart = start;
         $scope.displayedItems = arr.slice(thisStart, num);
+        addDaysProperty($scope.displayedItems);
       });
 
       // Item.getAll(function(err, data) {
