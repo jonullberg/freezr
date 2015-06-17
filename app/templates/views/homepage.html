@@ -3,7 +3,7 @@
   <h2>Your Inventory</h2>
   <ul>
     <li data-ng-repeat="item in displayedItems">
-      <img src={{item.imageURL}} alt={{item.caption}} />
+      <img src={{item.imageURL}} heigth="100" width="100" alt={{item.caption}} />
       {{item.itemName}}
       <span id="expires">Expires by {{item.exp}}</span>
       <span id={{item.storageType}}></span>
