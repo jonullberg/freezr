@@ -4,35 +4,58 @@ module.exports = function(app) {
   app.controller('foodController', ['$scope', '$http', 'RESTResource', function($scope, $http, resource) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
-    //hold errors
+    /**
+     * Holds all errors during rendering
+     * @type {Array}
+     */
     $scope.errors = [];
-    //hold food item objects
+    /**
+     * Holds all items from the server
+     * @type {Array}
+     */
     $scope.allItems = [];
+    /**
+     * Holds only the items we want to display to user
+     * @type {Array}
+     */
     $scope.displayedItems = [];
 
-    $scope.getDisplayedItems = function(num, start) {
-      var thisStart = 0;
-      if(start) thisStart = start;
-
-      Item.getAll(function(err, data) {
-        if(err) {
-          return $scope.errors.push({msg: 'error retrieving food items'});
-        }
-
-        $scope.displayedItems = data.slice(thisStart, num);
-      });
-    };
-
-    $scope.getDisplayedItems(15);
-
+    /**
+     * Grabs all the items from the server and puts it into an all items variable
+     * @param  {Function} callback A function to run on the data
+     */
     $scope.getAll = function(callback) {
       Item.getAll(function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'error retrieving food items'});
         }
         $scope.allItems = data;
+        callback($scope.allItems);
       });
     };
+
+    /**
+     * Grabs all the items from the server and then
+     * @param  {[type]} num   [description]
+     * @param  {[type]} start [description]
+     * @return {[type]}       [description]
+     */
+    $scope.getDisplayedItems = function(num, start) {
+      $scope.getAll(function(arr) {
+        var thisStart = 0;
+        if(start) thisStart = start;
+        $scope.displayedItems = arr.slice(thisStart, num);
+      });
+
+      // Item.getAll(function(err, data) {
+      //   if(err) {
+      //     return $scope.errors.push({msg: 'error retrieving food items'});
+      //   }
+      // $scope.displayedItems = $scope.allItems.slice(thisStart, num);
+      // });
+    };
+
+    $scope.getDisplayedItems(15);
 
     $scope.createNewItem = function(item) {
       //insert imageURL to item object depending on itemType
