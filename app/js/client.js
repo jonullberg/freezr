@@ -8,6 +8,7 @@ require('angular-base64');
 var freezrApp = angular.module('freezrApp', ['ngRoute', 'ngCookies', 'base64']);
 
 //  services
+require('./services/copy')(freezrApp);
 require('./services/rest_resources')(freezrApp);
 require('./auth/services/auth_service')(freezrApp);
 require('./services/food_data')(freezrApp);

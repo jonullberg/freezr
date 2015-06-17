@@ -8,8 +8,9 @@ module.exports = function(router) {
   router.use(bodyparser.json());
 
   //add RESTful APIs here
-  router.post('/food_items', function(req, res) {
+  router.post('/food_items', eatAuth, function(req, res) {
     var newItem = new Items(req.body);
+    newItem.authorID = req.user.username;
     newItem.save(function(err, data) {
       if (err) {
         console.log(err);
@@ -20,8 +21,8 @@ module.exports = function(router) {
     });
   });//end POST
 
-  router.get('/food_items', function(req, res) {
-    Items.find({}, function(err, data) {
+  router.get('/food_items', eatAuth, function(req, res) {
+    Items.find({authorID: req.user.username}, function(err, data) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg: 'internal server error'});
