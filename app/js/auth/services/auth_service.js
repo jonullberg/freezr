@@ -36,10 +36,6 @@ module.exports = function(app) {
 
       isSignedIn: function() {
         return !!($cookies.get('token') && $cookies.get('token').length);
-      },
-
-      whoami: function(user) {
-        return user.username;
       }
     };
   }]);
