@@ -3,7 +3,7 @@
 require('../../app/js/client');
 require('angular-mocks');
 
-describe('players controllers', function() {
+describe('Authorization controllers', function() {
   var $ControllerConstructor;
   var $httpBackend;
   var $scope;
