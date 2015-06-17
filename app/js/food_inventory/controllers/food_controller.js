@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('foodController', ['$scope', '$http', 'RESTResource', function($scope, $http, resource) {
+  app.controller('foodController', ['$scope', '$http', '$location', 'RESTResource', function($scope, $http, $location, resource) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     /**
@@ -34,12 +34,7 @@ module.exports = function(app) {
       });
     };
 
-    /**
-     * Grabs all the items from the server and then
-     * @param  {[type]} num   [description]
-     * @param  {[type]} start [description]
-     * @return {[type]}       [description]
-     */
+
     $scope.getDisplayedItems = function(num, start) {
       $scope.getAll(function(arr) {
         var thisStart = 0;
@@ -125,6 +120,8 @@ module.exports = function(app) {
         item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
       }
     };
-
+    $scope.changeRoute = function(item) {
+      $location.path('/item/' + item.itemName);
+    };
   }]);
 };

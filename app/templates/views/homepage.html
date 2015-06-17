@@ -2,7 +2,7 @@
   <input type="text" placeholder="Search your freezr">
   <h2>Your Inventory</h2>
   <ul>
-    <li data-ng-repeat="item in displayedItems">
+    <li data-ng-repeat="item in displayedItems" data-ng-click="changeRoute(item)">
       <img src={{item.imageURL}} alt={{item.caption}} />
       {{item.itemName}}
       <span id="expires">Expires by {{item.exp}}</span>
