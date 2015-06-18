@@ -91,7 +91,6 @@ describe('Authentication service', function() {
       });
 
       it('Should return false when token does not exist', function() {
-        console.log(auth.isSignedIn());
         expect(auth.isSignedIn()).toBe(false);
       });
     });
