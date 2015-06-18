@@ -77,12 +77,13 @@ module.exports = function(app) {
       var newItem = item;
       item = null;
 
-      $scope.allItems.push(newItem);
+      $scope.displayedItems.push(newItem);
+      foodData.store.push(newItem);
       Item.create(newItem, function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'could not save item: ' + newItem.itemID});
         }
-        $scope.allItems.splice($scope.allItems.indexOf(newItem), 1, data);
+        // $scope.allItems.splice($scope.allItems.indexOf(newItem), 1, data);
       });
     };
 
