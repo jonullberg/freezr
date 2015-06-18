@@ -31,7 +31,7 @@ describe('Food Data Service', function() {
       }
     ];
     beforeEach(function() {
-      foodData.storeData(fakeData)
+      foodData.storeData(fakeData);
     });
     it('should store data in store', function() {
       expect(foodData.store.length).toBe(2);
