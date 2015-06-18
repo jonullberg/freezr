@@ -22,6 +22,7 @@ module.exports = function(app) {
       storeData: function(data) {
         this.store = data;
       }
+
     };
   });
 };

@@ -20,12 +20,17 @@ module.exports = function(app) {
      */
     $scope.displayedItems = [];
 
+    /**
+     * Whill store in the foodData service the object that is clicked, can later be used to populate single_food directive
+     * @param  {object} thisItem A single food item object
+     */
     $scope.saveThisObj = function(thisItem) {
       foodData.thisObj = foodData.store.filter(function(item) {
-        return item._id === thisItem._id
+        return item._id === thisItem._id;
       });
       $location.path('/item');
     },
+
     /**
      * Grabs all the items from the server and puts it into an all items variable
      * @param  {Function} callback A function to run on the data
@@ -38,7 +43,7 @@ module.exports = function(app) {
         foodData.storeData(data);
         callback(foodData.store);
       });
-    };
+    },
 
     /**
      * Grabs all the items from the server and then
@@ -52,14 +57,7 @@ module.exports = function(app) {
         if(start) thisStart = start;
         $scope.displayedItems = arr.slice(thisStart, num);
       });
-
-      // Item.getAll(function(err, data) {
-      //   if(err) {
-      //     return $scope.errors.push({msg: 'error retrieving food items'});
-      //   }
-      // $scope.displayedItems = $scope.allItems.slice(thisStart, num);
-      // });
-    };
+    },
 
     $scope.getDisplayedItems(15);
 
