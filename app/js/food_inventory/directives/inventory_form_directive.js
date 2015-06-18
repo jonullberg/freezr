@@ -15,5 +15,17 @@ module.exports = function(app) {
     };
   });
 
-  //TODO: inventoryEditFormDirective
+  app.directive('singleItemEditDirective', function() {
+    return {
+      restrict: 'AC',
+      replace: true,
+      templateUrl: '/templates/directives/single_item_edit_form.html',
+      scope: {
+        save: '&',
+        buttonText: '=',
+        item: '='
+      },
+      transclude: true
+    };
+  });
 };

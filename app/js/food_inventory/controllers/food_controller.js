@@ -99,25 +99,6 @@ module.exports = function(app) {
       });
     };
 
-    /*
-      TODO: Need to decide on whether we will allow
-      editing of food items being inserted. If so, what
-      will we allow to edit?
-      TODO: This is related to food/inventory schema
-    */
-
-    $scope.saveItem = function(item) {
-      //add code here
-    };
-
-    $scope.editItem = function(item) {
-      //add code here
-    };
-
-    $scope.cancelEditing = function(item) {
-      //add code here
-    };
-
     $scope.clearErrors = function() {
       $scope.errors = [];
       $scope.getAll();
@@ -152,16 +133,6 @@ module.exports = function(app) {
       if (item.itemType == 'fish') {
         item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
       }
-    };
-
-    /*
-      This function redirects the user to the single item view,
-      depending on which item they click (grabs item by ID,
-      and each item has its own button).
-    */
-
-    $scope.viewSingleItem = function() {
-      $location.path('/item');
     };
 
   }]);
