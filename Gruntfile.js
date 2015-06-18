@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 
     jshint: {
        jasmine: {
-        src: ['test/karma-test/food_data_test.js'],
+        src: ['test/karma-test/*test.js'],
         options: {
           globals: {
             angular: true,
