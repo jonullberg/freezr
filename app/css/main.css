@@ -42,20 +42,29 @@ footer {
 }
 
 .logo {
-  font-family:lato;
+  font-family:ubuntu;
   color:#00A3BF;
   font-size:56px;
-  font-weight:600;
+  font-weight:500;
   float:left;
   padding:0 0 0px 25px;
   line-height:1;
 }
 .logo-small {
-  font-family:lato;
+  font-family:ubuntu  ;
   color:#00889F;
   font-weight:4600;
   font-size:1.3em;
 }
+
+.logo-header {
+  font-family:ubuntu;
+  color:#00A3BF;
+  font-size:1.5em;
+  font-weight:500;
+  padding-top: 15px;
+}
+
 .hamburger {
   background: url("/css/menu.png") no-repeat;
   background-size:contain;
@@ -93,6 +102,12 @@ ul {
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   background: #4DAEBF;
+}
+
+.inventory-prefix {
+  padding-left: 5%;
+  padding-top: 1em;
+  margin-bottom: -15px;
 }
 
 /*
