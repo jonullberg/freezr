@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var itemsSchema = mongoose.Schema({
+  authorID: {type: String, required: true},
   itemType: String,
   itemName: String,
   imageURL: String,
