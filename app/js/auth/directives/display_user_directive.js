@@ -14,7 +14,7 @@ module.exports = function (app) {
         };
 
         $scope.displayUsername = function() {
-          var username = $cookies.get('username');
+          var username = $cookies.get('username').toUpperCase();
           return username;
         };
       }]
