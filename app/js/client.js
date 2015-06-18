@@ -24,6 +24,7 @@ require('./auth/directives/logout_directive')(freezrApp);
 require('./auth/directives/sign_in_directive')(freezrApp);
 require('./auth/directives/create_user_directive')(freezrApp);
 require('./food_inventory/directives/inventory_form_directive')(freezrApp);
+require('./auth/directives/display_user_directive')(freezrApp);
 
 
 freezrApp.config(['$routeProvider', function($routeProvider) {
