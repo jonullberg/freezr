@@ -20,12 +20,6 @@ module.exports = function(app) {
        */
       storeData: function(data) {
         this.store = data;
-      },
-
-      saveSingleFood: function(data) {
-        this.singleFood = this.store.filter(function(item) {
-          return item._id === data._id;
-        });
       }
 
     };
