@@ -1,0 +1,16 @@
+<form name="{{'editing'+item._id" data-ng-if="item.editing" data-ng-submit="saveItem(item)">
+  <label>Item Name: </label>
+  <input type="text" placeholder="item name" data-ng-model="item.itemName">
+  <label>Qty: </label>
+  <input type="text" placeholder="quantity" data-ng-model="item.qty">
+  <label>Qty Type: </label>
+  <select data-ng-model="item.qtyType">
+    <option value="oz">oz</option>
+    <option value="fl oz">fl oz</option>
+    <option value="cup">cup</option>
+    <option value="lb">lb</option>
+  </select>
+  <button type="submit">Save</button>
+  <!-- <button class="btn" data-ng-click="cancelEditing(item)">Cancel</button>-->
+  <div data-ng-transclude></div>
+</form>

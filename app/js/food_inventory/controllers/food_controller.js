@@ -104,17 +104,53 @@ module.exports = function(app) {
       TODO: This is related to food/inventory schema
     */
 
-    $scope.saveItem = function(item) {
-      //add code here
-    };
+    // $scope.saveItem = function(item) {
+    //   //reset editing status
+    //   item.editing = false;
+    //   Item.save(item, function(err, data) {
+    //     if (err) {
+    //       console.log(err);
+    //       $scope.errors.push({msg: 'could not save changes'});
+    //     }
+    //   })
+    // };
 
-    $scope.editItem = function(item) {
-      //add code here
-    };
+    // $scope.editItem = function(item) {
+    //   item.editing = true;
+    //   //save a copy of original object
+    //   $scope.tempItem = angular.copy(item);
+    // };
 
-    $scope.cancelEditing = function(item) {
-      //add code here
-    };
+    // $scope.cancelEditing = function(item) {
+    //   item.editing = false;
+
+    //   if (item !== $scope.tempItem) {
+    //     if (item.itemName !== $scope.tempItem.itemName) {
+    //       item.itemName = $scope.tempItem.itemName;
+    //     }
+    //     if (item.itemType !== $scope.tempItem.itemType) {
+    //       item.itemType = $scope.tempItem.itemType;
+    //     }
+    //     if (item.exp !== $scope.tempItem.exp) {
+    //       item.exp = $scope.tempItem.exp;
+    //     }
+    //     if (item.qty !== $scope.tempItem.qty) {
+    //       item.qty = $scope.tempItem.qty;
+    //     }
+    //     if (item.qtyType !== $scope.tempItem.qtyType) {
+    //       item.qtyType = $scope.tempItem.qtyType;
+    //     }
+    //     if (item.cost !== $scope.tempItem.cost) {
+    //       item.cost = $scope.tempItem.cost;
+    //     }
+    //     if (item.storageType !== $scope.tempItem.storageType) {
+    //       item.storageType = $scope.tempItem.storageType;
+    //     }
+    //   }
+
+    //   //set object to null for next edit
+    //   $scope.tempItem = null;
+    // };
 
     $scope.clearErrors = function() {
       $scope.errors = [];
@@ -148,16 +184,6 @@ module.exports = function(app) {
       if (item.itemType == 'fish') {
         item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
       }
-    };
-
-    /*
-      This function redirects the user to the single item view,
-      depending on which item they click (grabs item by ID,
-      and each item has its own button).
-    */
-
-    $scope.viewSingleItem = function() {
-      $location.path('/item');
     };
 
   }]);
