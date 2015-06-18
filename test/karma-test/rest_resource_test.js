@@ -9,7 +9,11 @@ describe('REST Resource Service', function() {
   var resource;
   var $httpBackend;
   var testData = {
+    _id: 'myId',
     name: 'testing'
+  };
+  var testFailResponse = function(method, url, data, headers) {
+    return [404, '404 Error', {}, '404 error']
   };
 
   beforeEach(angular.mock.module('freezrApp'));
@@ -55,26 +59,69 @@ describe('REST Resource Service', function() {
         $httpBackend.flush();
       });
       it('Should fail to make a GET request to the wrong url', function() {
-        $httpBackend.expectGET('/api/testResource').respond(function(method, url, data, headers) {
-          return [404, 'response body', {}, '404 error']
-        });
+        $httpBackend.expectGET('/api/testResource').respond(testFailResponse);
         resource.getAll(function(err, data) {
-          expect(response.status).toBe(404);
+          expect(err).toBe('404 Error');
           expect(data).toBe(undefined);
-          // expect(err).toBe()
         });
         $httpBackend.flush();
       });
     });
-    // describe('The create function', function() {
-    //   it('Should make a POST request', function() {
-    //     $httpBackend.expectPOST('/api/testResource').respond(200, testData);
-    //     resource.create(function(data) {
-    //       console.log(data);
-    //     });
-    //     console.log(resource.getAll);
-    //     $httpBackend.flush();
-    //   });
-    // });
+    describe('The create function', function() {
+      it('Should make a POST request', function() {
+        $httpBackend.expectPOST('/api/testResource').respond(200, testData);
+        resource.create(testData, function(err, data) {
+          expect(err).toBe(null);
+          expect(data.name).toBe('testing');
+        });
+        $httpBackend.flush();
+      });
+      it('Should fail to make a POST request', function() {
+        $httpBackend.expectPOST('/api/testResource').respond(testFailResponse);
+        resource.create(testData, function(err, data) {
+          expect(data).toBe(undefined);
+          expect(err).toBe('404 Error')
+        });
+        $httpBackend.flush();
+      });
+
+    });
+    describe('The remove function', function() {
+      it('Should make a DELETE request', function() {
+        $httpBackend.expectDELETE('/api/testResource/myId').respond(200, testData);
+        resource.remove(testData, function(err, data) {
+          expect(err).toBe(null);
+          expect(data.name).toBe('testing');
+        });
+        $httpBackend.flush();
+      });
+      it('Should fail to make a DELETE request', function() {
+        $httpBackend.expectDELETE('/api/testResource/myId').respond(testFailResponse);
+        resource.remove(testData, function(err, data) {
+          expect(data).toBe(undefined);
+          expect(err).toBe('404 Error')
+        });
+        $httpBackend.flush();
+      });
+    });
+    describe('The save function', function() {
+      it('Should make a PUT request', function() {
+        $httpBackend.expectPUT('/api/testResource/myId').respond(200, testData);
+        resource.save(testData, function(err, data) {
+          expect(err).toBe(null);
+          expect(data.name).toBe('testing');
+        });
+        $httpBackend.flush();
+      });
+      it('Should fail to make a PUT request', function() {
+        $httpBackend.expectPUT('/api/testResource/myId').respond(testFailResponse);
+        resource.save(testData, function(err, data) {
+          expect(data).toBe(undefined);
+          expect(err).toBe('404 Error')
+        });
+        $httpBackend.flush();
+      });
+    });
+
   });
 });
