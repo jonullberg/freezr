@@ -24,9 +24,11 @@ module.exports = function(app) {
      * Whill store in the foodData service the object that is clicked, can later be used to populate single_food directive
      * @param  {object} thisItem A single food item object
      */
-    $scope.saveThisObj = function(thisItem) {
-      foodData.thisObj = foodData.store.filter(function(item) {
-        return item._id === thisItem._id;
+    $scope.singleFood = foodData.singleFood;
+
+    $scope.saveSingleFood = function(thisItem) {
+      foodData.singleFood = foodData.store.filter(function(item) {
+        return item._id === thisItem._id
       });
       $location.path('/item');
     },
@@ -45,6 +47,12 @@ module.exports = function(app) {
       });
     },
 
+    function addDaysProperty(arr) {
+      arr.forEach(function(item) {
+        var thisDate = new Date(item.exp);
+        item.days = Math.round((thisDate.getTime() - Date.now()) / 86400000);
+      });
+    }
     /**
      * Grabs all the items from the server and then
      * @param  {[type]} num   [description]
@@ -56,6 +64,7 @@ module.exports = function(app) {
         var thisStart = 0;
         if(start) thisStart = start;
         $scope.displayedItems = arr.slice(thisStart, num);
+        addDaysProperty($scope.displayedItems);
       });
     },
 
