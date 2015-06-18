@@ -7,13 +7,17 @@ module.exports = function(app) {
 
     $scope.errors = [];
 
-    if(foodData.singleFood === null) {
-      $scope.singleFood = $cookies.getObject('singleFood');
-    } else {
-      $scope.singleFood = foodData.singleFood;
+    function makeCookie() {
+      if(foodData.singleFood === null) {
+        $scope.singleFood = $cookies.getObject('singleFood');
+      } else {
+        $scope.singleFood = foodData.singleFood;
+      }
+
+      $cookies.putObject('singleFood', $scope.singleFood);
     }
 
-    $cookies.putObject('singleFood', $scope.singleFood);
+    makeCookie();
 
     $scope.addDaysProperty = function(arr) {
       arr.forEach(function(item) {
@@ -36,8 +40,7 @@ module.exports = function(app) {
           $scope.errors.push({msg: 'could not save changes'});
         }
       });
-
-      foodData.singleFood = item;
+      makeCookie();
     };
 
     $scope.editItem = function(item) {

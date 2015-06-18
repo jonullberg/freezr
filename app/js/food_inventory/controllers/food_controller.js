@@ -99,61 +99,6 @@ module.exports = function(app) {
       });
     };
 
-    /*
-      TODO: Need to decide on whether we will allow
-      editing of food items being inserted. If so, what
-      will we allow to edit?
-      TODO: This is related to food/inventory schema
-    */
-
-    // $scope.saveItem = function(item) {
-    //   //reset editing status
-    //   item.editing = false;
-    //   Item.save(item, function(err, data) {
-    //     if (err) {
-    //       console.log(err);
-    //       $scope.errors.push({msg: 'could not save changes'});
-    //     }
-    //   })
-    // };
-
-    // $scope.editItem = function(item) {
-    //   item.editing = true;
-    //   //save a copy of original object
-    //   $scope.tempItem = angular.copy(item);
-    // };
-
-    // $scope.cancelEditing = function(item) {
-    //   item.editing = false;
-
-    //   if (item !== $scope.tempItem) {
-    //     if (item.itemName !== $scope.tempItem.itemName) {
-    //       item.itemName = $scope.tempItem.itemName;
-    //     }
-    //     if (item.itemType !== $scope.tempItem.itemType) {
-    //       item.itemType = $scope.tempItem.itemType;
-    //     }
-    //     if (item.exp !== $scope.tempItem.exp) {
-    //       item.exp = $scope.tempItem.exp;
-    //     }
-    //     if (item.qty !== $scope.tempItem.qty) {
-    //       item.qty = $scope.tempItem.qty;
-    //     }
-    //     if (item.qtyType !== $scope.tempItem.qtyType) {
-    //       item.qtyType = $scope.tempItem.qtyType;
-    //     }
-    //     if (item.cost !== $scope.tempItem.cost) {
-    //       item.cost = $scope.tempItem.cost;
-    //     }
-    //     if (item.storageType !== $scope.tempItem.storageType) {
-    //       item.storageType = $scope.tempItem.storageType;
-    //     }
-    //   }
-
-    //   //set object to null for next edit
-    //   $scope.tempItem = null;
-    // };
-
     $scope.clearErrors = function() {
       $scope.errors = [];
       $scope.getAll();
