@@ -13,15 +13,19 @@ module.exports = function(app) {
        * Will hold the object being redirected to for global app functionality
        * @type {object}
        */
-      singleFood: null,
 
       /**
        * Stores the food data that is passed into it and stores it in an array so data can be passed around the app
        * @param  {array} data Data that is pulled from the server to be used around the app
        */
       storeData: function(data) {
-        console.log(data);
         this.store = data;
+      },
+
+      saveSingleFood: function(data) {
+        this.singleFood = this.store.filter(function(item) {
+          return item._id === data._id;
+        });
       }
 
     };

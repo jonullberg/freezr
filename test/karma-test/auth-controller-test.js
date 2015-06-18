@@ -10,8 +10,6 @@ describe('Authorization controllers', function() {
 
   beforeEach(angular.mock.module('freezrApp'));
   beforeEach(angular.mock.inject(function($rootScope, $controller) {
-    //don't have to use square bracket notation above for tests, because
-    //won't ever be minified.
     $scope = $rootScope.$new();
     $ControllerConstructor = $controller;
 
