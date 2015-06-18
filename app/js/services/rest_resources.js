@@ -39,11 +39,13 @@ module.exports = function(app) {
 
     return function(resourceName) {
       var token = $cookies.get('token');
+      var username = $cookies.get('username');
 
       /**
        *
        */
       $http.defaults.headers.common.token = token;
+      $http.defaults.headers.common.username = username;
       return {
 
         /**

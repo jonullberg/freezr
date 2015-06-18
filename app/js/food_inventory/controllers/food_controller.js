@@ -28,7 +28,7 @@ module.exports = function(app) {
 
     $scope.saveSingleFood = function(thisItem) {
       foodData.singleFood = foodData.store.filter(function(item) {
-        return item._id === thisItem._id
+        return item._id === thisItem._id;
       });
       $location.path('/item');
     },
@@ -52,7 +52,7 @@ module.exports = function(app) {
         var thisDate = new Date(item.exp);
         item.days = Math.round((thisDate.getTime() - Date.now()) / 86400000);
       });
-    }
+    },
     /**
      * Grabs all the items from the server and then
      * @param  {[type]} num   [description]
@@ -68,7 +68,7 @@ module.exports = function(app) {
       });
     },
 
-    $scope.getDisplayedItems(15);
+    $scope.getDisplayedItems(15); // jshint ignore:line
 
     $scope.createNewItem = function(item) {
       //insert imageURL to item object depending on itemType
@@ -121,6 +121,13 @@ module.exports = function(app) {
       $scope.getAll();
     };
 
+    /*
+      This function populates images for itemType user
+      selects upon creating/ adding a new food item.
+      This is subject to change if time allows to give
+      the user the option to upload their own image.
+    */
+
     $scope.populateImages = function(item) {
       if (item.itemType == 'vegetable') {
         item.imageURL = 'http://news.psu.edu/sites/default/files/styles/threshold-992/public/FarmMarket_NatalieMaynor_Flickr.jpg';
@@ -141,6 +148,16 @@ module.exports = function(app) {
       if (item.itemType == 'fish') {
         item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
       }
+    };
+
+    /*
+      This function redirects the user to the single item view,
+      depending on which item they click (grabs item by ID,
+      and each item has its own button).
+    */
+
+    $scope.viewSingleItem = function() {
+      $location.path('/item');
     };
 
   }]);

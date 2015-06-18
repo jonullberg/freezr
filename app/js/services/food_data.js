@@ -20,6 +20,7 @@ module.exports = function(app) {
        * @param  {array} data Data that is pulled from the server to be used around the app
        */
       storeData: function(data) {
+        console.log(data);
         this.store = data;
       }
 
