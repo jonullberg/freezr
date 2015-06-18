@@ -47,7 +47,7 @@ module.exports = function(app) {
       });
     },
 
-    function addDaysProperty(arr) {
+    $scope.addDaysProperty = function(arr) {
       arr.forEach(function(item) {
         var thisDate = new Date(item.exp);
         item.days = Math.round((thisDate.getTime() - Date.now()) / 86400000);
@@ -64,7 +64,7 @@ module.exports = function(app) {
         var thisStart = 0;
         if(start) thisStart = start;
         $scope.displayedItems = arr.slice(thisStart, num);
-        addDaysProperty($scope.displayedItems);
+        $scope.addDaysProperty($scope.displayedItems);
       });
     },
 

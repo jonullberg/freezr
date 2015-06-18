@@ -3,6 +3,9 @@
     <li data-ng-repeat='item in singleFood'>
        <div class='item-wrapper' style="background-image: url({{item.imageURL}})"></div>
       {{item.itemName}}
+      {{item.days + ' days to expiration'}}
+      {{item.qty}}
+      {{item.qtyType}}
     </li>
   </ul>
 </section>

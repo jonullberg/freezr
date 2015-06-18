@@ -13,10 +13,10 @@ module.exports = function (app) {
           return auth.isSignedIn();
         };
 
-        $scope.displayUsername = function() {
-          var username = $cookies.get('username').toUpperCase();
-          return username;
-        };
+        // $scope.displayUsername = function() {
+        //   var username = $cookies.get('username').toUpperCase();
+        //   return username;
+        // };
       }]
     };
   }]);
