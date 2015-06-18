@@ -8,6 +8,7 @@ require('angular-base64');
 var freezrApp = angular.module('freezrApp', ['ngRoute', 'ngCookies', 'base64']);
 
 //  services
+require('./services/copy')(freezrApp);
 require('./services/rest_resources')(freezrApp);
 require('./auth/services/auth_service')(freezrApp);
 require('./services/food_data')(freezrApp);
@@ -23,6 +24,7 @@ require('./auth/directives/logout_directive')(freezrApp);
 require('./auth/directives/sign_in_directive')(freezrApp);
 require('./auth/directives/create_user_directive')(freezrApp);
 require('./food_inventory/directives/inventory_form_directive')(freezrApp);
+require('./auth/directives/display_user_directive')(freezrApp);
 
 
 freezrApp.config(['$routeProvider', function($routeProvider) {

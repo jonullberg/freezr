@@ -11,6 +11,7 @@ module.exports = function(app) {
           })
           .success(function(data) {
             $cookies.put('token', data.token);
+            $cookies.put('username', data.username);
             callback(null);
           })
           .error(function(data) {
@@ -23,6 +24,7 @@ module.exports = function(app) {
           .post('/api/create_user', user)
           .success(function(data) {
             $cookies.put('token', data.token);
+            $cookies.put('username', data.username);
             callback(null);
           })
           .error(function(data) {

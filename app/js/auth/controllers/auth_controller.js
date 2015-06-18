@@ -47,12 +47,11 @@ module.exports = function(app) {
           $location.path('/homepage');
         });
       } else {
-      auth.signIn(user, function(err) {
+        auth.signIn(user, function(err) {
           if(err) {
             console.log(err);
             return $scope.errors.push({ msg: 'Could not sign in' });
           }
-
           $location.path('/homepage');
         });
       }
