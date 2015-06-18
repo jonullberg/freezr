@@ -63,7 +63,7 @@ module.exports = function(router, passport) {
         return res.status(500).json({msg: 'error generating token'});
       }
 
-      res.json({msg: 'authenticated as: ' + req.user.basic.email, token: token});
+      res.json({msg: 'authenticated as: ' + req.user.basic.email, username: req.user.username, token: token});
     });//end generateToken
   });//end GET
 };
