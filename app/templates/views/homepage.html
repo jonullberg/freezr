@@ -1,10 +1,11 @@
 <section class="your-inventory">
   <div class="inventory-prefix">
-    <input type="text" placeholder="Search your freezr"/>
+    <input type="text" placeholder="Search your freezr" data-ng-model="search.$">
     <div class="logo-header">your freezr</div>
   </div>
   <ul>
-    <li data-ng-repeat="item in displayedItems" data-ng-click="saveSingleFood(item)">
+    <!-- the search filter tries to match your search to any property in the itemObj (can change if requested) -->
+    <li data-ng-repeat="item in displayedItems | filter:search" data-ng-click="saveSingleFood(item)">
       <div class="item-wrapper" style="background-image: url({{item.imageURL}})">
         <div class="food-item"> <!-- for element inspector adjustment -->
 
@@ -17,6 +18,8 @@
             <span class="item-days">{{item.days}}</span><br/>
              days
           </div>
+        </div>
+        <button data-ng-click="viewSingleItem()">View More</button>
       </div>
       </div>
     </li>

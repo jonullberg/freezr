@@ -121,6 +121,13 @@ module.exports = function(app) {
       $scope.getAll();
     };
 
+    /*
+      This function populates images for itemType user
+      selects upon creating/ adding a new food item.
+      This is subject to change if time allows to give
+      the user the option to upload their own image.
+    */
+
     $scope.populateImages = function(item) {
       if (item.itemType == 'vegetable') {
         item.imageURL = 'http://news.psu.edu/sites/default/files/styles/threshold-992/public/FarmMarket_NatalieMaynor_Flickr.jpg';
@@ -141,6 +148,16 @@ module.exports = function(app) {
       if (item.itemType == 'fish') {
         item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
       }
+    };
+
+    /*
+      This function redirects the user to the single item view,
+      depending on which item they click (grabs item by ID,
+      and each item has its own button).
+    */
+
+    $scope.viewSingleItem = function() {
+      $location.path('/item');
     };
 
   }]);
