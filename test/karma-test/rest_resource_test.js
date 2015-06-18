@@ -13,7 +13,7 @@ describe('REST Resource Service', function() {
     name: 'testing'
   };
   var testFailResponse = function(method, url, data, headers) {
-    return [404, '404 Error', {}, '404 error']
+    return [404, '404 Error', {}, '404 error'];
   };
 
   beforeEach(angular.mock.module('freezrApp'));
@@ -30,7 +30,7 @@ describe('REST Resource Service', function() {
   describe('An instantiation of a REST service', function() {
     beforeEach(angular.mock.inject(function(_$httpBackend_) {
       $httpBackend = _$httpBackend_;
-      resource = RESTResource('testResource');
+      resource = new RESTResource('testResource');
     }));
 
     afterEach(function() {
@@ -80,7 +80,7 @@ describe('REST Resource Service', function() {
         $httpBackend.expectPOST('/api/testResource').respond(testFailResponse);
         resource.create(testData, function(err, data) {
           expect(data).toBe(undefined);
-          expect(err).toBe('404 Error')
+          expect(err).toBe('404 Error');
         });
         $httpBackend.flush();
       });
@@ -99,7 +99,7 @@ describe('REST Resource Service', function() {
         $httpBackend.expectDELETE('/api/testResource/myId').respond(testFailResponse);
         resource.remove(testData, function(err, data) {
           expect(data).toBe(undefined);
-          expect(err).toBe('404 Error')
+          expect(err).toBe('404 Error');
         });
         $httpBackend.flush();
       });
@@ -117,7 +117,7 @@ describe('REST Resource Service', function() {
         $httpBackend.expectPUT('/api/testResource/myId').respond(testFailResponse);
         resource.save(testData, function(err, data) {
           expect(data).toBe(undefined);
-          expect(err).toBe('404 Error')
+          expect(err).toBe('404 Error');
         });
         $httpBackend.flush();
       });
