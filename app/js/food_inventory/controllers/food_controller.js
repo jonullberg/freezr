@@ -27,7 +27,9 @@ module.exports = function(app) {
     $scope.singleFood = foodData.singleFood;
 
     $scope.saveSingleFood = function(thisItem) {
-      foodData.saveSingleFood(thisItem);
+      foodData.singleFood = foodData.store.filter(function(item) {
+          return item._id === thisItem._id;
+        });
       $location.path('/item');
     },
 
