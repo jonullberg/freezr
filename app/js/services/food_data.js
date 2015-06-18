@@ -8,6 +8,11 @@ module.exports = function(app) {
        * @type {Array}
        */
       store: [],
+
+      /**
+       * Will hold the object being redirected to for global app functionality
+       * @type {object}
+       */
       singleFood: null,
 
       /**
@@ -17,6 +22,7 @@ module.exports = function(app) {
       storeData: function(data) {
         this.store = data;
       }
+
     };
   });
 };
