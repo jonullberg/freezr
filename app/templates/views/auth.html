@@ -1,8 +1,8 @@
 <section data-ng-controller="authController">
   <ul>
     <li data-ng-repeat="tab in tabs"
-      <button type="button" data-ng-class="{active:isActiveTab(tab.url)}"
-      data-ng-click="onClickTab(tab)">{{tab.title}}</button>
+      data-ng-class="{active:isActiveTab(tab.url)}"
+      data-ng-click="onClickTab(tab)">{{tab.title}}
     </li>
   </ul>
   <div data-ng-include="currentTab"></div>
