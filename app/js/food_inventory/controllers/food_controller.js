@@ -28,7 +28,7 @@ module.exports = function(app) {
 
     $scope.saveSingleFood = function(thisItem) {
       foodData.singleFood = foodData.store.filter(function(item) {
-        return item._id === thisItem._id
+        return item._id === thisItem._id;
       });
       $location.path('/item');
     },
@@ -47,12 +47,12 @@ module.exports = function(app) {
       });
     },
 
-    function addDaysProperty(arr) {
+    $scope.addDaysProperty = function(arr) {
       arr.forEach(function(item) {
         var thisDate = new Date(item.exp);
         item.days = Math.round((thisDate.getTime() - Date.now()) / 86400000);
       });
-    }
+    },
     /**
      * Grabs all the items from the server and then
      * @param  {[type]} num   [description]
@@ -64,11 +64,11 @@ module.exports = function(app) {
         var thisStart = 0;
         if(start) thisStart = start;
         $scope.displayedItems = arr.slice(thisStart, num);
-        addDaysProperty($scope.displayedItems);
+        $scope.addDaysProperty($scope.displayedItems);
       });
     },
 
-    $scope.getDisplayedItems(15);
+    $scope.getDisplayedItems(15); // jshint ignore:line
 
     $scope.createNewItem = function(item) {
       //insert imageURL to item object depending on itemType
