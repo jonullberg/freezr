@@ -1,6 +1,8 @@
 <section class="your-inventory">
-  <input type="text" placeholder="Search your freezr">
-  <h2>Your Inventory</h2>
+  <div class="inventory-prefix">
+    <input type="text" placeholder="Search your freezr"/>
+    <div class="logo-header">your freezr</div>
+  </div>
   <ul>
     <li data-ng-repeat="item in displayedItems" data-ng-click="saveSingleFood(item)">
       <div class="item-wrapper" style="background-image: url({{item.imageURL}})">
