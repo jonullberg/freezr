@@ -10,10 +10,10 @@ module.exports = function(app) {
       store: [],
 
       /**
-       * Stores the object for the current page
+       * Will hold the object being redirected to for global app functionality
        * @type {object}
        */
-      thisObj: null,
+      singleFood: null,
 
       /**
        * Stores the food data that is passed into it and stores it in an array so data can be passed around the app
@@ -22,6 +22,7 @@ module.exports = function(app) {
       storeData: function(data) {
         this.store = data;
       }
+
     };
   });
 };

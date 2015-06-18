@@ -42,7 +42,7 @@ freezrApp.config(['$routeProvider', function($routeProvider) {
       controller: 'foodController'
     })
     .when('/item', {
-      templateUrl: 'templates/directives/single_food.html',
+      templateUrl: 'templates/views/single_food.html',
       controller: 'foodController'
     })
     .otherwise({
