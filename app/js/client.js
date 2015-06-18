@@ -16,6 +16,7 @@ require('./services/food_data')(freezrApp);
 //  controllers
 require('./auth/controllers/auth_controller')(freezrApp);
 require('./food_inventory/controllers/food_controller')(freezrApp);
+require('./single_food/controllers/single_food_controller')(freezrApp);
 
 //  directives
 require('./directives/header_directive')(freezrApp);
@@ -43,7 +44,7 @@ freezrApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/item', {
       templateUrl: 'templates/views/single_food.html',
-      controller: 'foodController'
+      controller: 'singleFoodController'
     })
     .otherwise({
       redirectTo: '/create_user'
