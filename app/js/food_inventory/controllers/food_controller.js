@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('foodController', ['$scope', '$http', '$location', 'RESTResource', 'foodData', function($scope, $http, $location, resource, foodData) {
+  app.controller('foodController', ['$scope', '$location', 'RESTResource', 'foodData', function($scope, $http, $location, resource, foodData) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     /**
@@ -47,6 +47,10 @@ module.exports = function(app) {
       });
     },
 
+    /**
+     * Finds the number of days left until expiration
+     * @param {array} arr Takes an array argument of objects with dates
+     */
     $scope.addDaysProperty = function(arr) {
       arr.forEach(function(item) {
         var thisDate = new Date(item.exp);
@@ -55,9 +59,8 @@ module.exports = function(app) {
     },
     /**
      * Grabs all the items from the server and then
-     * @param  {[type]} num   [description]
-     * @param  {[type]} start [description]
-     * @return {[type]}       [description]
+     * @param  {number} num   The number of items to take from Array
+     * @param  {number} start The starting point to start slicing items off of Array *Optional*
      */
     $scope.getDisplayedItems = function(num, start) {
       $scope.getAll(function(arr) {
@@ -70,6 +73,10 @@ module.exports = function(app) {
 
     $scope.getDisplayedItems(15); // jshint ignore:line
 
+    /**
+     * Takes an item and adds it to foodData service and displayedItems array, then makes create call to REST RESTResource
+     * @param  {object} item The item to be created
+     */
     $scope.createNewItem = function(item) {
       //insert imageURL to item object depending on itemType
       $scope.populateImages(item);
@@ -87,10 +94,12 @@ module.exports = function(app) {
       });
     };
 
+    /**
+     * Removes the item from the allItems array while also making remove() call for REST Resource
+     * @param  {object} item The item to be removed
+     */
     $scope.removeItem = function(item) {
-      //select item to delete
       $scope.allItems.splice($scope.allItems.indexOf(item), 1);
-      //delete item selected
       Item.remove(item, function(err) {
         if (err) {
           return $scope.errors.push({msg: 'could not remove item: ' + item});
