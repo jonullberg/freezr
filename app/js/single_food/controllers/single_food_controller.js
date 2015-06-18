@@ -11,7 +11,7 @@ module.exports = function(app) {
       $scope.singleFood = $cookies.getObject('singleFood');
     } else {
       $scope.singleFood = foodData.singleFood;
-    };
+    }
 
     $cookies.putObject('singleFood', $scope.singleFood);
 
@@ -37,7 +37,7 @@ module.exports = function(app) {
         }
       });
 
-      return foodData.singleFood = item;
+      foodData.singleFood = item;
     };
 
     $scope.editItem = function(item) {
