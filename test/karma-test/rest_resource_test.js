@@ -55,9 +55,11 @@ describe('REST Resource Service', function() {
         $httpBackend.flush();
       });
       it('Should fail to make a GET request to the wrong url', function() {
-        $httpBackend.expectGET('/api/testResource').respond(404);
+        $httpBackend.expectGET('/api/testResource').respond(function(method, url, data, headers) {
+          return [404, 'response body', {}, '404 error']
+        });
         resource.getAll(function(err, data) {
-          console.log(err);
+          expect(response.status).toBe(404);
           expect(data).toBe(undefined);
           // expect(err).toBe()
         });
