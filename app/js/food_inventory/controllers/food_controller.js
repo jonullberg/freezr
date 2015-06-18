@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('foodController', ['$scope', '$http', '$location', 'RESTResource', 'foodData', function($scope, $http, $location, resource, foodData) {
+  app.controller('foodController', ['$scope', '$location', 'RESTResource', 'foodData', function($scope, $location, resource, foodData) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     /**
@@ -28,8 +28,8 @@ module.exports = function(app) {
 
     $scope.saveSingleFood = function(thisItem) {
       foodData.singleFood = foodData.store.filter(function(item) {
-        return item._id === thisItem._id;
-      });
+          return item._id === thisItem._id;
+        });
       $location.path('/item');
     },
 
@@ -77,12 +77,14 @@ module.exports = function(app) {
       var newItem = item;
       item = null;
 
-      $scope.allItems.push(newItem);
+      $scope.displayedItems.push(newItem);
+      $scope.addDaysProperty($scope.displayedItems);
+      foodData.store.push(newItem);
       Item.create(newItem, function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'could not save item: ' + newItem.itemID});
         }
-        $scope.allItems.splice($scope.allItems.indexOf(newItem), 1, data);
+
       });
     };
 
@@ -163,6 +165,8 @@ module.exports = function(app) {
       This is subject to change if time allows to give
       the user the option to upload their own image.
     */
+
+    //BELOW IMAGES NEED TO BE SAVED AND ADDED TO PROJECT UNDER lib/img
 
     $scope.populateImages = function(item) {
       if (item.itemType == 'vegetable') {

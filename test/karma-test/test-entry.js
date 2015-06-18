@@ -6,3 +6,5 @@ require('./food_controller_test.js');
 
 //  Service Tests
 require('./food_data_test.js');
+require('./auth_service_test.js');
+require('./rest_resource_test.js');
