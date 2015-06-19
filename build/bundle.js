@@ -30372,15 +30372,10 @@
 	        return;
 	      }
 	      $scope.showRecipes = true;
-	      $http.get('http://food2fork.com/api/search?key=' + apiKey + '&q=' + foodName).success(function(data, headers) {
-	        console.log(res.headers);
+	      $http.get('http://food2fork.com/api/search?key=' + apiKey + '&q=' + foodName).success(function(data) {
+	          console.log(data);
+	          console.log('get at singleFoodController');
 	      });
-	      // request
-	      //   .get('http://food2fork.com/api/search?key=' + apiKey + '&q=' + foodName)
-	      //   // .query('?key=' + apiKey + '&q=' + foodName)
-	      //   .end(function(err, res) {
-	      //     console.log(res);
-	      //   });
 	    };
 
 	    function makeCookie() {
