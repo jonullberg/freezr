@@ -4,6 +4,8 @@ module.exports = function(app) {
   app.controller('foodController', ['$scope', '$location', 'RESTResource', 'foodData', function($scope, $location, resource, foodData) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
+    $scope.showThisForm = false; // jshint ignore:line
+
     /**
      * Holds all errors during rendering
      * @type {Array}
@@ -31,6 +33,17 @@ module.exports = function(app) {
           return item._id === thisItem._id;
         });
       $location.path('/item');
+    },
+
+    $scope.toggleForm = function() {
+      if($scope.showThisForm) {
+        $scope.showThisForm = false;
+        return;
+      } else {
+        $scope.showThisForm = true;
+        return;
+      }
+
     },
 
     /**
