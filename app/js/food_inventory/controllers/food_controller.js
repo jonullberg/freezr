@@ -57,7 +57,7 @@ module.exports = function(app) {
         return;
       }
 
-    },
+    };
 
     /**
      * Grabs all the items from the server and puts it into an all items variable
@@ -105,12 +105,13 @@ module.exports = function(app) {
      */
     $scope.createNewItem = function(item) {
       //insert imageURL to item object depending on itemType
-      $scope.populateImages(item);
+      console.log('createNewItem ran');
 
       var newItem = item;
       item = null;
 
       $scope.displayedItems.push(newItem);
+      $scope.populateImages(newItem);
       $scope.addDaysProperty($scope.displayedItems);
       foodData.store.push(newItem);
       Item.create(newItem, function(err, data) {
@@ -126,7 +127,7 @@ module.exports = function(app) {
      * @param  {object} item The item to be removed
      */
     $scope.removeItem = function(item) {
-      $scope.allItems.splice($scope.allItems.indexOf(item), 1);
+      $scope.displayedItems.splice($scope.displayedItems.indexOf(item), 1);
       Item.remove(item, function(err) {
         if (err) {
           return $scope.errors.push({msg: 'could not remove item: ' + item});
@@ -150,23 +151,23 @@ module.exports = function(app) {
 
     $scope.populateImages = function(item) {
       if (item.itemType == 'vegetable') {
-        item.imageURL = 'http://news.psu.edu/sites/default/files/styles/threshold-992/public/FarmMarket_NatalieMaynor_Flickr.jpg';
+        item.imageURL = 'css/img/vegetable.jpg';
       }
 
       if (item.itemType == 'fruit') {
-        item.imageURL = 'http://modernfarmer.com/wp-content/uploads/2014/06/berry_basket.jpg';
+        item.imageURL = 'css/img/fruit.jpg';
       }
 
       if (item.itemType == 'meat') {
-        item.imageURL = 'http://www.countryvalley.co.uk/images/country-valley-foods-small-bbq-meat-box-hamper-p82-117_zoom.jpg';
+        item.imageURL = 'css/img/meat.jpg';
       }
 
       if (item.itemType == 'dairy') {
-        item.imageURL = 'http://svsaqua.com/wp-content/uploads/2013/09/dairy-products-300x207.jpg';
+        item.imageURL = 'css/img/dairy.jpg';
       }
 
       if (item.itemType == 'fish') {
-        item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
+        item.imageURL = 'css/img/fish.jpg';
       }
     };
 
