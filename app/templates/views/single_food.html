@@ -16,5 +16,15 @@
       </div>
     </li>
   </ul>
+  <h3>Get Recipes</h3>
+  <section>
+    <ul>
+      <li data-ng-repeat="recipe in recipes">
+        <a href={{recipe.source_url}}><img src={{recipe.image_url}} /></a>
+        <h4>{{recipe.title}}</h4>
+      </li>
+    </ul>
+  </section>
+
 </section>
 
