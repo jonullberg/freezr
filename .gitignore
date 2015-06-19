@@ -2,3 +2,4 @@
 .DS_Store
 db/
 test/karma-test/bundle.js
+**/add_item_directive.js
