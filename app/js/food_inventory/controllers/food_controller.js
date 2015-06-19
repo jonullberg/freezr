@@ -71,7 +71,7 @@ module.exports = function(app) {
         foodData.storeData(data);
         callback(foodData.store);
       });
-    };
+    }; //jshint ignore:line
 
     /**
      * Finds the number of days left until expiration

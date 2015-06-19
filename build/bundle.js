@@ -74,6 +74,7 @@
 	__webpack_require__(20)(freezrApp);
 	__webpack_require__(21)(freezrApp);
 
+	//  values
 
 	freezrApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
 	  $routeProvider
@@ -30190,6 +30191,8 @@
 	  app.controller('foodController', ['$scope', '$location', '$cookies', 'RESTResource', 'foodData', function($scope, $location, $cookies, resource, foodData) {
 	    //can change name later, Item (single) Items (plural)
 	    var Item = resource('food_items');
+	    $scope.showThisForm = false; // jshint ignore:line
+
 	    /**
 	     * Holds all errors during rendering
 	     * @type {Array}
@@ -30220,6 +30223,27 @@
 	          return item._id === thisItem._id;
 	        });
 	      $location.path('/item');
+	    };
+
+	    /**
+	     * add form button controller
+	     */
+
+	    // $scope.addForm = $rootScope.addForm;
+	    // $scope.showAddForm = function() {
+	    //   console.log($scope.addForm);
+	    //   $scope.addForm = !$scope.addForm;
+	    // };
+
+	    $scope.toggleForm = function() {
+	      if($scope.showThisForm) {
+	        $scope.showThisForm = false;
+	        return;
+	      } else {
+	        $scope.showThisForm = true;
+	        return;
+	      }
+
 	    },
 
 	    /**
@@ -30234,7 +30258,7 @@
 	        foodData.storeData(data);
 	        callback(foodData.store);
 	      });
-	    },
+	    }; //jshint ignore:line
 
 	    /**
 	     * Finds the number of days left until expiration
@@ -30245,7 +30269,7 @@
 	        var thisDate = new Date(item.exp);
 	        item.days = Math.round((thisDate.getTime() - Date.now()) / 86400000);
 	      });
-	    },
+	    };
 	    /**
 	     * Grabs all the items from the server and then
 	     * @param  {number} num   The number of items to take from Array
@@ -30258,7 +30282,7 @@
 	        $scope.displayedItems = arr.slice(thisStart, num);
 	        $scope.addDaysProperty($scope.displayedItems);
 	      });
-	    },
+	    };
 
 	    $scope.getDisplayedItems(15); // jshint ignore:line
 
@@ -30458,9 +30482,6 @@
 	      restrict: 'A',
 	      replace: true,
 	      templateUrl: '/templates/directives/header.html',
-	      scope: {
-
-	      },
 	      transclude: true
 	    };
 	  });
