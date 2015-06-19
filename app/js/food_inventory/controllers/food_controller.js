@@ -105,13 +105,12 @@ module.exports = function(app) {
      */
     $scope.createNewItem = function(item) {
       //insert imageURL to item object depending on itemType
-      console.log('createNewItem ran');
+      $scope.populateImages(item);
 
       var newItem = item;
       item = null;
 
       $scope.displayedItems.push(newItem);
-      $scope.populateImages(newItem);
       $scope.addDaysProperty($scope.displayedItems);
       foodData.store.push(newItem);
       Item.create(newItem, function(err, data) {
@@ -121,6 +120,7 @@ module.exports = function(app) {
       $scope.displayedItems.splice($scope.displayedItems.indexOf(newItem), 1, data);
       foodData.store.splice(foodData.store.indexOf(newItem), 1, data);
       });
+      $scope.showThisForm = false; //hides form after new item is created
     };
 
     /**
@@ -128,7 +128,7 @@ module.exports = function(app) {
      * @param  {object} item The item to be removed
      */
     $scope.removeItem = function(item) {
-      $scope.displayedItems.splice($scope.displayedItems.indexOf(item), 1);
+      $scope.allItems.splice($scope.allItems.indexOf(item), 1);
       Item.remove(item, function(err) {
         if (err) {
           return $scope.errors.push({msg: 'could not remove item: ' + item});
@@ -140,7 +140,6 @@ module.exports = function(app) {
       $scope.errors = [];
       $scope.getAll();
     };
-
     /*
       This function populates images for itemType user
       selects upon creating/ adding a new food item.
