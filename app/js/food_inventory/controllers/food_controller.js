@@ -128,7 +128,7 @@ module.exports = function(app) {
      * @param  {object} item The item to be removed
      */
     $scope.removeItem = function(item) {
-      $scope.allItems.splice($scope.allItems.indexOf(item), 1);
+      $scope.displayedItems.splice($scope.displayedItems.indexOf(item), 1);
       Item.remove(item, function(err) {
         if (err) {
           return $scope.errors.push({msg: 'could not remove item: ' + item});
