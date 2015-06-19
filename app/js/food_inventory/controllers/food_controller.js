@@ -118,7 +118,8 @@ module.exports = function(app) {
         if (err) {
           return $scope.errors.push({msg: 'could not save item: ' + newItem.itemID});
         }
-
+      $scope.displayedItems.splice($scope.displayedItems.indexOf(newItem), 1, data);
+      foodData.store.splice(foodData.store.indexOf(newItem), 1, data);
       });
     };
 
