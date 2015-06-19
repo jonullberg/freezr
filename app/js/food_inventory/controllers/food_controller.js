@@ -57,7 +57,7 @@ module.exports = function(app) {
         return;
       }
 
-    },
+    };
 
     /**
      * Grabs all the items from the server and puts it into an all items variable
@@ -150,23 +150,23 @@ module.exports = function(app) {
 
     $scope.populateImages = function(item) {
       if (item.itemType == 'vegetable') {
-        item.imageURL = 'http://news.psu.edu/sites/default/files/styles/threshold-992/public/FarmMarket_NatalieMaynor_Flickr.jpg';
+        item.imageURL = '../../../../lib/img/vegetable.jpg';
       }
 
       if (item.itemType == 'fruit') {
-        item.imageURL = 'http://modernfarmer.com/wp-content/uploads/2014/06/berry_basket.jpg';
+        item.imageURL = '../../../../lib/img/fruit.jpg';
       }
 
       if (item.itemType == 'meat') {
-        item.imageURL = 'http://www.countryvalley.co.uk/images/country-valley-foods-small-bbq-meat-box-hamper-p82-117_zoom.jpg';
+        item.imageURL = '../../../../lib/img/meat.jpg';
       }
 
       if (item.itemType == 'dairy') {
-        item.imageURL = 'http://svsaqua.com/wp-content/uploads/2013/09/dairy-products-300x207.jpg';
+        item.imageURL = '../../../../lib/img/dairy.jpg';
       }
 
       if (item.itemType == 'fish') {
-        item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
+        item.imageURL = '../../../../lib/img/fish.jpg';
       }
     };
 
