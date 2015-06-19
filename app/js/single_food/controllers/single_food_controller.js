@@ -1,4 +1,5 @@
 'use strict';
+var fakeData = require('../../../../lib/test/fake_recipe_data2.js');
 
 module.exports = function(app) {
   app.controller('singleFoodController', ['$scope', '$cookies', 'RESTResource', 'foodData', function($scope, $cookies, resource, foodData) {
@@ -6,6 +7,15 @@ module.exports = function(app) {
     var Item = resource('food_items');
 
     $scope.errors = [];
+
+    $scope.recipes = [];
+
+    function getRecipes() {
+      $scope.recipes = fakeData.recipes.slice(0, 4);
+      console.log($scope.recipes);
+    }
+
+    getRecipes();
 
     function makeCookie() {
       if(foodData.singleFood === null) {
