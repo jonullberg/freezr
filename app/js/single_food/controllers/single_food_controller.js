@@ -38,8 +38,7 @@ module.exports = function(app) {
       } else {
         $scope.singleFood = foodData.singleFood;
       }
-
-      // $cookies.putObject('singleFood', $scope.singleFood);
+      $cookies.putObject('singleFood', $scope.singleFood);
     }
 
     makeCookie();

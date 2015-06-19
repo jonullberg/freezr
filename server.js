@@ -5,12 +5,7 @@ var express = require('express');
 var passport = require('passport');
 var app = express();
 
-app.all('*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Headers', 'X-Requested-With');
-  res.header('Access-Control-Allow-Methods', 'GET, POST', 'PUT');
-  next();
-});
+
 app.use(express.static(__dirname + '/build'));
 
 process.env.APP_SECRET = process.env.APP_SECRET || 'changethischangethischangetis!';
@@ -35,6 +30,13 @@ require('./routes/recipe_routes.js')(recipeRoutes);
 app.use('/api', freezerRoutes);
 app.use('/api', usersRoutes);
 app.use('/api', recipeRoutes);
+
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  res.header('Access-Control-Allow-Methods', 'GET, POST', 'PUT');
+  next();
+});
 
 app.listen(process.env.PORT || 3000, function() {
   console.log('server running on PORT ' + (process.env.PORT || 3000));
