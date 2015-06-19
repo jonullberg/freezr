@@ -118,7 +118,9 @@ module.exports = function(app) {
         }
         $scope.displayedItems.splice($scope.displayedItems.indexOf(newItem), 1, data);
 
+
       });
+      $scope.showThisForm = false; //hides form after new item is created
     };
 
     /**
