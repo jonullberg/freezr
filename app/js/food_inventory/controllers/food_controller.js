@@ -117,8 +117,8 @@ module.exports = function(app) {
         if (err) {
           return $scope.errors.push({msg: 'could not save item: ' + newItem.itemID});
         }
-
       });
+      $scope.showThisForm = false; //hides form after new item is created
     };
 
     /**
