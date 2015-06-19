@@ -1,0 +1,20 @@
+<section>
+  <ul>
+    <li data-ng-repeat='item in singleFood'>
+       <div class='item-wrapper' style="background-image: url({{item.imageURL}})"></div>
+      {{item.itemName}}
+      {{item.days + ' days to expiration'}}
+      {{item.qty}}
+      {{item.qtyType}}
+      <button data-ng-if="!item.editing" data-ng-disabled="!item._id" data-ng-click="editItem(item)">Edit</button>
+      <div data-single-item-edit-directive
+            data-save="saveItem(item)"
+            data-button-text="'Save'"
+            data-ng-if="item.editing"
+            data-item="item">
+        <button class="btn" data-ng-click="cancelEditing(item)">Cancel</button>
+      </div>
+    </li>
+  </ul>
+</section>
+
