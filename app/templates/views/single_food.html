@@ -1,4 +1,4 @@
-<section>
+<section class="single-food-css">
   <ul>
     <li data-ng-repeat='item in singleFood'>
        <div class='item-wrapper' style="background-image: url({{item.imageURL}})"></div>
@@ -17,7 +17,7 @@
     </li>
   </ul>
   <h3 data-ng-click="toggleRecipes(item.itemName)">Get Recipes</h3>
-  <section>
+  <section class="recipe-links">
     <ul>
       <li data-ng-repeat="recipe in displayedRecipes">
         <a href={{recipe.source_url}}><img src={{recipe.image_url}} /></a>
