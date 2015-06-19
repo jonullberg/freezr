@@ -6,11 +6,7 @@ module.exports = function(app) {
       restrict: 'AC',
       replace: true,
       templateUrl: '/templates/directives/inventory_form.html',
-      scope: {
-        save: '&',
-        buttonText: '=',
-        item: '='
-      },
+      scope: {},
       transclude: true
     };
   });
