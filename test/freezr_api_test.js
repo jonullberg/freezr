@@ -1,118 +1,113 @@
 'use strict';
 
-process.env.MONGOLAB_URI = 'mongodb://localhost/freezer_dev_test';
+process.env.MONGOLAB_URI = 'mongodb://localhost/freezer_test';
 require('../server.js');
+
 var mongoose = require('mongoose');
 var chai = require('chai');
-var chaiHttp = require('chai-http');
-chai.use(chaiHttp);
+var chaihttp = require('chai-http');
+chai.use(chaihttp);
 var expect = chai.expect;
-var User = require('../models/User');
-var Items = require('../models/Items'); //double-check naming
-var bodyparser = require('body-parser');
 var eat = require('eat');
-var app = 'localhost:3000';
 
-describe('api users routes', function() {
+var Item = require('../models/Items.js');
+var User = require('../models/User.js');
+var saveUserToken = '';
+
+describe('Item REST API', function() {
+  before(function(done) {
+    var itemTest = new Item({authorID: 'test', itemName: 'broccoli', itemType: 'vegetable', qty: 1, storageType: 'pantry'});
+    itemTest.save(function(err, data) {
+      if (err) {
+        return console.log(err);
+      }
+      this.itemTest = data;
+      //console.log(data);
+      done();
+    }.bind(this));
+
+    var testUser = new User({'username': 'test', 'basic.email': 'test@example.com', 'basic.password': 'foobar123'});
+
+    testUser['basic.password'] = testUser.generateHash(testUser['basic.password'], function(err, hash) {
+      if (err) {
+        console.log('in generate hash ' + err);
+        res.status(500).json({msg: 'could not save password'}); //jshint ignore:line
+      }
+
+      testUser['basic.password'] = hash;
+
+      testUser.save(function(err, user) {
+        if (err) {
+          return console.log(err);
+        }
+
+        user.generateToken(process.env.APP_SECRET, function(err, token) {
+          if (err) {
+            return console.log(err);
+          }
+
+          saveUserToken = token;
+        });
+      });
+    });
+  });//end before
+
   after(function(done) {
     mongoose.connection.db.dropDatabase(function() {
       done();
     });
+  });//end after
+
+  it('should get an item from the collection', function(done) {
+    chai.request('localhost:3000')
+      .get('/api/food_items')
+      .send({token: saveUserToken})
+      .end(function(err, res) {
+        console.log(err);
+        console.log(res.body);
+        expect(err).to.eql(null);
+        expect(typeof res.body).to.equal('object');
+        expect(res.body[0].itemName).to.equal('broccoli');
+        done();
+      });
   });
 
-  var newToken;
-
-  it('should be able to create a test user', function(done) {
-    chai.request(app)
-      .post('/api/create_user')
-      .send({username: 'testuser',
-             email: 'testuser@test.com',
-             password: 'test'})
+  it('should post a new item', function(done) {
+    chai.request('localhost:3000')
+      .post('/api/food_items')
+      .send({authorID: 'test2', itemName: 'celery', itemType: 'vegetable', qty: 1, storageType: 'refrigerator', token: saveUserToken})
       .end(function(err, res) {
-        newToken = res.body.token;
         expect(err).to.eql(null);
-        expect(res.body).to.have.property('token');
+        expect(res.body).to.have.property('_id');
+        expect(res.body).to.have.property('itemName');
+        expect(res.body.authorID).to.equal('test');
+        done();
+      });
+  });
+
+  it('should replace or update an existing item', function(done) {
+    var id = this.itemTest._id;
+
+    chai.request('localhost:3000')
+      .put('/api/food_items/' + this.itemTest._id)
+      .send({authorID: 'test2', itemName: 'zucchini', itemType: 'vegetable', qty: 1, storageType: 'refrigerator', token: saveUserToken})
+      .end(function(err, res) {
+        expect(err).to.eql(null);
+        expect(res.body.msg).to.equal('success');
         done();
       });
   });
 
   it('should be able to sign in the test user', function(done) {
-    chai.request(app)
+    chai.request('localhost:3000')
       .get('/api/sign_in')
       .set('email', 'testuser@test.com')
       .set('password', 'test')
-      .set('token', newToken)
+      .set('token', saveUserToken)
       .end(function(err, res) {
         expect(err).to.eql(null);
         //possibly add more expects here
       done();
       });
   });
-
-  it('should store a new food item', function(done) {
-    chai.request(app)
-      .post('/api/food_items')
-      .send({itemType: 'bananas', qty: 5})
-      .end(function(err, res) {
-        expect(err).to.eql(null);
-        expect(res.body.itemType).to.eql('bananas');
-        expect(res.body.qty).to.eql(5);
-        expect(res.body).to.have.property('_id');
-        done();
-      });
-  });
-
-  it('should get array of food items', function(done) {
-    chai.request(app)
-      .get('/api/food_items')
-      .set('email', 'testuser@test.com')
-      .set('password', 'test')
-      .set('token', newToken)
-      .end(function(err, res) {
-        expect(err).to.eql(null);
-        expect(typeof res.body).to.eql('object');
-        expect(Array.isArray(res.body)).to.eql(true);
-      done();
-      });
-  });
-
-  describe('needs an existing item in the array', function() {
-    beforeEach(function(done) {
-      var testItem = new Items({itemType: 'apples', qty: 3});
-      testItem.save(function(err, data) {
-        if(err) throw err;
-        this.testItem = data;
-        done();
-      }.bind(this));
-    });
-
-    it('should create test item in beforeEach block', function() {
-      expect(this.testItem.itemType).to.eql('apples');
-      expect(this.testItem.qty).to.eql(3);
-      expect(this.testItem).to.have.property('_id');
-  });
-
-
-    it('should update a food item', function(done) {
-      chai.request(app)
-        .put('/api/food_items/' + this.testItem._id)
-        .send({qty: 4})
-        .end(function(err, res) {
-          expect(err).to.eql(null);
-          expect(res.body.msg).to.eql('success');
-        done();
-      });
-  });
-    it('should delete a food item', function(done) {
-      chai.request(app)
-        .del('/api/food_items/' + this.testItem._id)
-        .end(function(err, res) {
-          expect(err).to.eql(null);
-          expect(res.body.msg).to.eql('success');
-        done();
-      });
-    });
-  });
 });
-
-

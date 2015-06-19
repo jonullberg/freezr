@@ -19,7 +19,7 @@
   <h3 data-ng-click="toggleRecipes(item.itemName)">Get Recipes</h3>
   <section data-ng-if="showRecipes === true">
     <ul>
-      <li data-ng-repeat="recipe in recipes">
+      <li data-ng-repeat="recipe in displayedRecipes">
         <a href={{recipe.source_url}}><img src={{recipe.image_url}} /></a>
         <h4>{{recipe.title}}</h4>
       </li>
