@@ -105,7 +105,6 @@ module.exports = function(app) {
      */
     $scope.createNewItem = function(item) {
       //insert imageURL to item object depending on itemType
-      console.log('createNewItem ran');
 
       var newItem = item;
       item = null;
@@ -116,8 +115,9 @@ module.exports = function(app) {
       foodData.store.push(newItem);
       Item.create(newItem, function(err, data) {
         if (err) {
-          return $scope.errors.push({msg: 'could not save item: ' + newItem.itemID});
+          return $scope.errors.push({msg: 'could not save item: ' + newItem.itemName});
         }
+        $scope.displayedItems.splice($scope.displayedItems.indexOf(newItem), 1, data);
 
       });
     };

@@ -28,7 +28,7 @@
 <section class="more-items">
   <h2 data-ng-click="toggleForm()"><button>Add More Items</button></h2>
   <div data-ng-if="showThisForm">
-<form class="new-item">
+<form class="new-item" data-ng-submit="createNewItem(item)">
   <ul>
 
     <li>
@@ -75,7 +75,7 @@
 
 
     <li>
-      <input type="submit" value="Add Item" data-ng-click="createNewItem(item)"/>
+      <input type="submit" value="Add Item" />
     </li>
   </ul>
 </form>
