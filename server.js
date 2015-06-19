@@ -5,7 +5,7 @@ var express = require('express');
 var passport = require('passport');
 var app = express();
 
-app.use(express.static(__dirname + '/build'));
+//app.use(express.static(__dirname + '/build'));
 
 process.env.APP_SECRET = process.env.APP_SECRET || 'changethischangethischangetis!';
 
