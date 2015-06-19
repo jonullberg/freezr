@@ -36,7 +36,7 @@ module.exports = function(router) {
   * need to add filter search GET request
   */
 
-  router.put('/food_items/:id', function(req, res) {
+  router.put('/food_items/:id', eatAuth, function(req, res) {
     var updatedItem = req.body;
     delete updatedItem._id;
 
