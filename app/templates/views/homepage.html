@@ -1,7 +1,7 @@
 <section class="your-inventory">
   <div class="inventory-prefix">
     <input type="text" placeholder="Search your freezr" data-ng-model="search.$">
-    <div class="logo-header">your freezr</div>
+    <div class="logo-header" data-ng-click="toggleForm()">your freezr</div>
   </div>
   <ul>
     <!-- the search filter tries to match your search to any property in the itemObj (can change if requested) -->
@@ -24,9 +24,10 @@
     </li>
   </ul>
 </section>
-<section class="more-items"> <!-- TODO remove hide css -->
+<section class="more-items">
+  <h2 data-ng-click="toggleForm()">Add More Items</h2>
   <div data-inventory-form-directive
         data-save="createNewItem(item)"
-        data-button-text="'Add Item'">
-  </div>
+        data-button-text="'Add Item'"
+        data-ng-if="showThisForm"></div>
 </section>

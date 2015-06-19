@@ -28,6 +28,7 @@ require('./food_inventory/directives/inventory_form_directive')(freezrApp);
 require('./auth/directives/display_user_directive')(freezrApp);
 require('./recipes/directives/recipe_directive')(freezrApp);
 
+//  values
 
 freezrApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
   $routeProvider
