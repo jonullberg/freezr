@@ -5,7 +5,7 @@
   </div>
   <ul>
     <!-- the search filter tries to match your search to any property in the itemObj (can change if requested) -->
-    <li data-ng-repeat="item in displayedItems | filter:search" >
+    <li  data-ng-click="saveSingleFood(item)" data-ng-repeat="item in displayedItems | filter:search" >
       <div class="item-wrapper" style="background-image: url({{item.imageURL}})">
         <div class="food-item"> <!-- for element inspector adjustment -->
 
