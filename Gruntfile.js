@@ -96,6 +96,13 @@ module.exports = function(grunt) {
           path: 'test/karma-test/',
           file: 'bundle.js'
         }
+      },
+      production: {
+        entry: __dirname + '/app/js/client.js',
+        output: {
+          path: 'production/',
+          file: 'bundle.js'
+        }
       }
     },
 
@@ -108,7 +115,15 @@ module.exports = function(grunt) {
 
 
     copy: {
-      html: {
+      pro: {
+        cwd: 'app/',
+        expand: true,
+        flatten: false,
+        src: ['**/*.html', '**/css/*'],
+        dest: 'production/',
+        filter: 'isFile'
+      },
+      dev: {
         cwd: 'app/',
         expand: true,
         flatten: false,
@@ -121,13 +136,17 @@ module.exports = function(grunt) {
     clean: {
       dev: {
         src: 'build/'
+      },
+      pro: {
+        src: 'production/'
       }
     }
   });
 
-  grunt.registerTask('build:dev', ['jshint', 'webpack:client', 'copy:html']);
+  grunt.registerTask('build:pro', ['webpack:production', 'copy:pro']);
+  grunt.registerTask('build:dev', ['jshint', 'webpack:client', 'copy:dev']);
   grunt.registerTask('test', ['jshint', 'build:dev', 'simplemocha']);
   grunt.registerTask('karmatest', ['webpack:karmaTest', 'karma:test']);
   grunt.registerTask('default', ['build:dev']);
-  grunt.registerTask('less',['webpack:client','copy:html']);
+  grunt.registerTask('less',['webpack:client','copy:dev']);
 };

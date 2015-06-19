@@ -5,8 +5,7 @@ var express = require('express');
 var passport = require('passport');
 var app = express();
 
-//app.use(express.static(__dirname + '/build'));
-//app.use(express.static(__dirname + '/app'));
+// app.use(express.static(__dirname + '/app'));
 //heroku change
 app.use(express.static(__dirname + '/build'));
 
