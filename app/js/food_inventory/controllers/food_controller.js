@@ -2,7 +2,6 @@
 
 module.exports = function(app) {
   app.controller('foodController', ['$scope', '$location', '$cookies', 'RESTResource', 'foodData', function($scope, $location, $cookies, resource, foodData) {
-    //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     $scope.showThisForm = false; // jshint ignore:line
 
@@ -23,7 +22,7 @@ module.exports = function(app) {
     $scope.displayedItems = [];
 
     /**
-     * Whill store in the foodData service the object that is clicked, can later be used to populate single_food directive
+     * Will store in the foodData service the object that is clicked, can later be used to populate single_food directive
      * @param  {object} thisItem A single food item object
      */
     $scope.singleFood = foodData.singleFood;
