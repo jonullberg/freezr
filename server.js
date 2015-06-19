@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/freezer_dev');
 
 app.use(passport.initialize());
 
-app.use(express.static(__dirname + '/app'));
+//app.use(express.static(__dirname + '/app'));
 //heroku change
 app.use(express.static(__dirname + '/build'));
 
