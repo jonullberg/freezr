@@ -137,6 +137,10 @@ ul {
     display:block;
 }
 
+.recipe-links ul li a {
+  float:left;
+}
+
 /*
 **** Auth Styling ***
 */
