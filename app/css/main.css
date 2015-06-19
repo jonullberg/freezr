@@ -12,6 +12,7 @@ body {
   font-family:"Gill Sans MT",trebuchet, sans-serif;
   color:#333;
   font-size:1.2em ;
+  height:900px;
 }
 header {
   background:#ededed;
@@ -27,10 +28,22 @@ header {
 
   padding-bottom:100px; /* Height of the footer element */
   padding-top:100px ;
-  min-height: 800px;
+  min-height: 700px;
     /*background: url("/css/fruit.jpg");
     background-size: cover;
     height:700px;*/
+    position:relative;
+    top:-900px;
+
+}
+
+#guard {
+  padding-bottom:100px; /* Height of the footer element */
+  padding-top:100px ;
+  min-height: 700px;
+    background: url("/css/fruit.jpg");
+    background-size: cover;
+    height:700px;
 }
 footer {
   text-align:center;
@@ -111,6 +124,23 @@ ul {
   margin-bottom: -15px;
 }
 
+#buttons li {
+    float: left;
+    list-style: none;
+    text-align: center;
+    background-color: #4DAEBF;
+    margin-right: 30px;
+    width: 150px;
+    line-height: 50px;
+    color:white;
+    border-radius:5px;
+    display:block;
+}
+
+.recipe-links ul li a {
+  float:left;
+}
+
 /*
 **** Auth Styling ***
 */
@@ -122,7 +152,17 @@ ul {
   padding: 20px;
   width: 500px;
   height: auto;
-  margin:auto;
+  margin:10px auto auto;
+  clear:both;
+  color:#eee;
+}
+
+.auth-forms {
+}
+
+#ul-wrapper {
+  display:inline-block;
+  margin-left:32%;
 }
 
 .pure-form-aligned .pure-control-group label {
@@ -145,11 +185,10 @@ ul {
 */.pure-control-group textarea
 
 {
-  /*width:15em;*/
+  width:15em;
   padding: 0.2em .4em;
-
-
 }
+
 .pure-control-group select {
 /*  width:15em;
 */  padding: 0.2em .4em;
@@ -182,7 +221,7 @@ ul {
 .item-name {
   font-size:1.1em;
   font-weight:bold;
-  text-shadow: 0px 0px 2px #000;
+  text-shadow: 0px 0px 4px #000;
   padding-top:6%;
   color:#fff;
 
@@ -201,7 +240,7 @@ ul {
   font-size:1em;
   font-weight:normal;
   line-height:.9em;
-  text-shadow: 0 0 2px #000;
+  text-shadow: 0 0 4px #000;
   padding-top:20%;
   color:#fff;
 }
@@ -222,53 +261,23 @@ ul {
 
 }
 
+
 /*
 ***** add form ***
 */
 
-/*.newItem {
-  display: block;
-  width: 500px;
-  border: solid 1px #666;
-  border-radius: 15px;
-  float: right;
-  position: relative;
-  top: 90px;
-  right: 0;
-}*/
-
-#item-name {
-
+#add-more-click {
+  color: #00a3bf;
+  font-family: ubuntu;
+  font-size: 1.5em;
+  font-weight: 500;
+  padding-top: 15px;
+  position:absolute;
+  right:15px;
+  top:65px;
+  cursor: pointer;
+  cursor: hand;
 }
-#item-type {
-  width:150px;
-  float:left;
-}
-#item-exp {
-  width:150px;
-  float:right;
-}
-#item-qty {
-  clear:both;
-  width:100px;
-  float:left;
-}
-#item-measure {
-  width:100px;
-  float:left;
-}
-#item-cost {
-  width:100px;
-  float:left;
-}
-#item-area {
-float:left;
-}
-#add-submit {
-
-  float:left;
-}
-
 .new-item{
     max-width: 450px;
     background: #00A3BF;
@@ -277,8 +286,9 @@ float:left;
     box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
     border-radius: 10px;
     border: 1px solid #00A6eF;
-    float:right;
-    position:static;
+    /*float:right;*/
+    position:relative;
+    top:-200px;
 }
 .new-item ul li select,
 .new-item ul li input

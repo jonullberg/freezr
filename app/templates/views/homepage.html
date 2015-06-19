@@ -1,11 +1,11 @@
-<section class="your-inventory">
+<section class="your-inventory homepage-css>
   <div class="inventory-prefix">
     <input type="text" placeholder="Search your freezr" data-ng-model="search.$">
     <div class="logo-header" data-ng-click="toggleForm()">your freezr</div>
   </div>
   <ul>
     <!-- the search filter tries to match your search to any property in the itemObj (can change if requested) -->
-    <li data-ng-repeat="item in displayedItems | filter:search" data-ng-click="saveSingleFood(item)">
+    <li data-ng-repeat="item in displayedItems | filter:search" >
       <div class="item-wrapper" style="background-image: url({{item.imageURL}})">
         <div class="food-item"> <!-- for element inspector adjustment -->
 
@@ -19,15 +19,65 @@
              days
           </div>
         </div>
-      </div>
+        <button data-ng-click="saveSingleFood(item)">Edit</button>
+        <button data-ng-click='removeItem(item)'>X</button>
       </div>
     </li>
   </ul>
 </section>
 <section class="more-items">
-  <h2 data-ng-click="toggleForm()">Add More Items</h2>
-  <div data-inventory-form-directive
-        data-save="createNewItem(item)"
-        data-button-text="'Add Item'"
-        data-ng-if="showThisForm"></div>
+  <h2 data-ng-click="toggleForm()"><button>Add More Items</button></h2>
+  <div data-ng-if="showThisForm">
+<form class="new-item">
+  <ul>
+
+    <li>
+      <input type="text" placeholder="item name" data-ng-model="item.itemName" class="field-style field-full align-none"/>
+    </li>
+
+    <li>
+      <select data-ng-model="item.itemType" class="field-style field-split align-left">
+        <option value="" disabled selected>category</option>
+        <option value="vegetable">Vegetable</option>
+        <option value="fruit">Fruit</option>
+        <option value="meat">Meat</option>
+        <option value="fish">Fish</option>
+      </select>
+
+      <input type="date" data-ng-model="item.exp" class="field-style field-split align-right" placeholder="expiration" />
+    </li>
+
+    <li>
+      <input type="number" placeholder="quantity" data-ng-model="item.qty" class="field-style field-split align-left"/>
+
+      <select data-ng-model="item.qtyType" class="field-style field-split align-right">
+        <option value="" disabled selected>measure</option>
+        <option value="bunch">bunch</option>
+        <option value="cup">cup</option>
+        <option value="each">each</option>
+        <option value="oz">oz</option>
+        <option value="fl oz">fl oz</option>
+        <option value="lb">lb</option>
+      </select>
+
+      <input type="currency" placeholder="cost" data-ng-model="item.cost" class="field-style field-split align-left"/>
+    </li>
+
+    <li>
+      <select data-ng-model="item.storageType" class="field-style field-split align-right">
+        <option value="" disabled selected style='display:none;'>storage area</option>
+        <option value="refrigerator">Refrigerator</option>
+        <option value="freezer">Freezer</option>
+        <option value="pantry">Pantry</option>
+        <option value="cabinet">Kitchen</option>
+      </select>
+    </li>
+
+
+    <li>
+      <input type="submit" value="Add Item" data-ng-click="createNewItem(item)"/>
+    </li>
+  </ul>
+</form>
+  </div>
 </section>
