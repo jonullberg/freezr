@@ -5,7 +5,7 @@
   </div>
   <ul>
     <!-- the search filter tries to match your search to any property in the itemObj (can change if requested) -->
-    <li data-ng-repeat="item in displayedItems | filter:search" data-ng-click="saveSingleFood(item)">
+    <li data-ng-repeat="item in displayedItems | filter:search" >
       <div class="item-wrapper" style="background-image: url({{item.imageURL}})">
         <div class="food-item"> <!-- for element inspector adjustment -->
 
@@ -19,13 +19,14 @@
              days
           </div>
         </div>
-      </div>
+        <button data-ng-click="saveSingleFood(item)">Edit</button>
+        <button data-ng-click='removeItem(item)'>X</button>
       </div>
     </li>
   </ul>
 </section>
 <section class="more-items">
-  <h2 id="add-more-click" data-ng-click="toggleForm()">add items +</h2>
+  <h2 data-ng-click="toggleForm()"><button>Add More Items</button></h2>
   <div data-inventory-form-directive
         data-save="createNewItem(item)"
         data-button-text="'Add Item'"
