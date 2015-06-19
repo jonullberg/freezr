@@ -4,6 +4,8 @@ module.exports = function(app) {
   app.controller('foodController', ['$scope', '$location', '$cookies', 'RESTResource', 'foodData', function($scope, $location, $cookies, resource, foodData) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
+    $scope.showThisForm = false; // jshint ignore:line
+
     /**
      * Holds all errors during rendering
      * @type {Array}
@@ -45,6 +47,17 @@ module.exports = function(app) {
     //   console.log($scope.addForm);
     //   $scope.addForm = !$scope.addForm;
     // };
+
+    $scope.toggleForm = function() {
+      if($scope.showThisForm) {
+        $scope.showThisForm = false;
+        return;
+      } else {
+        $scope.showThisForm = true;
+        return;
+      }
+
+    },
 
     /**
      * Grabs all the items from the server and puts it into an all items variable

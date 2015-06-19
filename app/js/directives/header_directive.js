@@ -6,9 +6,6 @@ module.exports = function(app) {
       restrict: 'A',
       replace: true,
       templateUrl: '/templates/directives/header.html',
-      scope: {
-
-      },
       transclude: true
     };
   });
