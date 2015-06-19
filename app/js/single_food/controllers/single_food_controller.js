@@ -1,27 +1,31 @@
 'use strict';
 var fakeData = require('../../../../lib/test/fake_recipe_data2.js');
+var request = require('superagent');
 
 module.exports = function(app) {
   app.controller('singleFoodController', ['$scope', '$http', '$cookies', 'RESTResource', 'foodData', function($scope, $http, $cookies, resource, foodData) {
     //can change name later, Item (single) Items (plural)
-    // delete $http.defaults.headers.common['X-Requested-With'];
-    $http.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://food2fork.com/';
     var Item = resource('food_items');
     var apiKey = '571b18999a49c04ce8f405766c96fd3b';
     var foodObj = $cookies.getObject('singleFood');
-    var foodName = (foodObj[0].itemName);
+    var foodName = foodObj[0].itemName;
     $scope.errors = [];
 
     $scope.recipes = [];
 
     $scope.showRecipes; // jshint ignore:line
 
+    $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+    // delete $http.defaults.headers.common['X-Requested-With'];
+
+
     function getRecipes() {
       $scope.recipes = fakeData.recipes.slice(0, 4);
-      console.log($scope.recipes);
+      //console.log($scope.recipes);
     }
 
     getRecipes();
+
 
     $scope.toggleRecipes = function() {
       if($scope.showRecipes) {
@@ -29,8 +33,8 @@ module.exports = function(app) {
         return;
       }
       $scope.showRecipes = true;
-      $http.get('http://food2fork.com/api/search?key=' + apiKey + '&q=' + foodName).success(function(data) {
-        console.log(data);
+      $http.get('http://food2fork.com/api/search?key=' + apiKey + '&q=' + foodName).success(function(data, headers) {
+        console.log(res.headers);
       });
     };
 
