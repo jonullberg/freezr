@@ -57,7 +57,7 @@ module.exports = function(app) {
         return;
       }
 
-    },
+    };
 
     /**
      * Grabs all the items from the server and puts it into an all items variable
