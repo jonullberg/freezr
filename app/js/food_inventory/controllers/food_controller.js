@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('foodController', ['$scope', '$location', 'RESTResource', 'foodData', function($scope, $location, resource, foodData) {
+  app.controller('foodController', ['$scope', '$location', '$cookies', 'RESTResource', 'foodData', function($scope, $location, $cookies, resource, foodData) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     $scope.showThisForm = false; // jshint ignore:line
@@ -29,11 +29,24 @@ module.exports = function(app) {
     $scope.singleFood = foodData.singleFood;
 
     $scope.saveSingleFood = function(thisItem) {
+      $cookies.putObject('singleFood', foodData.store.filter(function(item) {
+        return item._id === thisItem._id;
+      }));
       foodData.singleFood = foodData.store.filter(function(item) {
           return item._id === thisItem._id;
         });
       $location.path('/item');
-    },
+    };
+
+    /**
+     * add form button controller
+     */
+
+    // $scope.addForm = $rootScope.addForm;
+    // $scope.showAddForm = function() {
+    //   console.log($scope.addForm);
+    //   $scope.addForm = !$scope.addForm;
+    // };
 
     $scope.toggleForm = function() {
       if($scope.showThisForm) {
@@ -58,7 +71,7 @@ module.exports = function(app) {
         foodData.storeData(data);
         callback(foodData.store);
       });
-    },
+    };
 
     /**
      * Finds the number of days left until expiration
@@ -69,7 +82,7 @@ module.exports = function(app) {
         var thisDate = new Date(item.exp);
         item.days = Math.round((thisDate.getTime() - Date.now()) / 86400000);
       });
-    },
+    };
     /**
      * Grabs all the items from the server and then
      * @param  {number} num   The number of items to take from Array
@@ -82,7 +95,7 @@ module.exports = function(app) {
         $scope.displayedItems = arr.slice(thisStart, num);
         $scope.addDaysProperty($scope.displayedItems);
       });
-    },
+    };
 
     $scope.getDisplayedItems(15); // jshint ignore:line
 

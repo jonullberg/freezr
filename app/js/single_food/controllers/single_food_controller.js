@@ -1,38 +1,36 @@
 'use strict';
-var fakeData = require('../../../../lib/test/fake_recipe_data2.js');
 
 module.exports = function(app) {
   app.controller('singleFoodController', ['$scope', '$http', '$cookies', 'RESTResource', 'foodData', function($scope, $http, $cookies, resource, foodData) {
     //can change name later, Item (single) Items (plural)
-    // delete $http.defaults.headers.common['X-Requested-With'];
-    $http.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://food2fork.com/';
     var Item = resource('food_items');
-    var apiKey = '571b18999a49c04ce8f405766c96fd3b';
-    var foodObj = $cookies.getObject('singleFood');
-    var foodName = (foodObj[0].itemName);
     $scope.errors = [];
 
     $scope.recipes = [];
+    $scope.displayedRecipes = [];
 
     $scope.showRecipes; // jshint ignore:line
 
-    function getRecipes() {
-      $scope.recipes = fakeData.recipes.slice(0, 4);
-      console.log($scope.recipes);
-    }
-
-    getRecipes();
-
     $scope.toggleRecipes = function() {
+
       if($scope.showRecipes) {
         $scope.showRecipes = false;
         return;
+      } else {
+        $scope.showRecipes = true;
+        var foodObj = $cookies.getObject('singleFood');
+        var foodName = foodObj[0].itemName;
+        $http.get('/api/recipes/' + foodName)
+          .success(function(data) {
+            $scope.recipes = data;
+            $scope.displayedRecipes = $scope.recipes.slice(0,4);
+          }).error(function(err) {
+            console.log(err);
+          });
+        return;
       }
-      $scope.showRecipes = true;
-      $http.get('http://food2fork.com/api/search?key=' + apiKey + '&q=' + foodName).success(function(data) {
-        console.log(data);
-      });
     };
+
 
     function makeCookie() {
       if(foodData.singleFood === null) {
@@ -40,7 +38,6 @@ module.exports = function(app) {
       } else {
         $scope.singleFood = foodData.singleFood;
       }
-
       $cookies.putObject('singleFood', $scope.singleFood);
     }
 
@@ -54,9 +51,6 @@ module.exports = function(app) {
     };
 
     $scope.addDaysProperty($scope.singleFood);
-
-    // console.log($cookies.getObject('singleFood'));
-    // console.log($scope.singleFood);
 
     $scope.saveItem = function(item) {
       //reset editing status

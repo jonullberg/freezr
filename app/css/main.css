@@ -27,6 +27,7 @@ header {
 
   padding-bottom:100px; /* Height of the footer element */
   padding-top:100px ;
+  min-height: 800px;
     /*background: url("/css/fruit.jpg");
     background-size: cover;
     height:700px;*/
@@ -65,7 +66,7 @@ footer {
   padding-top: 15px;
 }
 
-.hamburger {
+#hamburger {
   background: url("/css/menu.png") no-repeat;
   background-size:contain;
   height:100%;
@@ -135,12 +136,27 @@ ul {
 .pure-form-aligned .pure-controls {
   margin: 1.5em 0 0 7.3em;
 }
-.pure-form input[type="email"],
-.pure-form input[type="password"],
-.pure-form input[type="text"]
+.pure-control-group input[type="email"],
+.pure-control-group input[type="password"],
+.pure-control-group input[type="text"],
+.pure-control-group input[type="number"],
+.pure-control-group input[type="date"],
+/*.pure-control-group select,
+*/.pure-control-group textarea
+
 {
-  width:15em;
+  /*width:15em;*/
+  padding: 0.2em .4em;
+
+
 }
+.pure-control-group select {
+/*  width:15em;
+*/  padding: 0.2em .4em;
+  height:auto;
+
+}
+
 
 /*
 ******* Homepage styling *******
@@ -203,5 +219,131 @@ ul {
 ***** functional ***
 */
 .more-items {
-  display:block;
+
+}
+
+/*
+***** add form ***
+*/
+
+/*.newItem {
+  display: block;
+  width: 500px;
+  border: solid 1px #666;
+  border-radius: 15px;
+  float: right;
+  position: relative;
+  top: 90px;
+  right: 0;
+}*/
+
+#item-name {
+
+}
+#item-type {
+  width:150px;
+  float:left;
+}
+#item-exp {
+  width:150px;
+  float:right;
+}
+#item-qty {
+  clear:both;
+  width:100px;
+  float:left;
+}
+#item-measure {
+  width:100px;
+  float:left;
+}
+#item-cost {
+  width:100px;
+  float:left;
+}
+#item-area {
+float:left;
+}
+#add-submit {
+
+  float:left;
+}
+
+.new-item{
+    max-width: 450px;
+    background: #00A3BF;
+    padding: 30px;
+    margin: 50px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 1px solid #00A6eF;
+    float:right;
+    position:static;
+}
+.new-item ul li select,
+.new-item ul li input
+{
+  height:2em;
+  margin: 6px 0;
+  padding-top:4px;
+}
+.new-item ul{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+.new-item ul li {
+    display: block;
+    margin-bottom: 0px;
+    min-height: 35px;
+}
+.new-item ul li .field-style {
+    box-sizing: border-box;
+    padding: 4px 4px 8px 8px;
+    outline: none;
+    border: 1px solid #B0CFE0;
+    /*-webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;*/
+
+}.new-item ul li .field-style:focus {
+    box-shadow: 0 0 5px #B0CFE0;
+    border:1px solid #B0CFE0;
+}
+.new-item ul li .field-split{
+    width: 49%;
+}
+.new-item ul li .field-third {
+    width:30%;
+}
+.new-item ul li .field-full {
+    width: 100%;
+}
+.new-item ul li .align-left {
+    float:left;
+}
+.new-item ul li .align-right {
+    float:right;
+}
+.new-item ul li textarea{
+    width: 100%;
+    height: 100px;
+}
+.new-item ul li input[type="button"],
+.new-item ul li input[type="submit"] {
+    box-shadow: inset 0px 1px 0px 0px #3985B1;
+    background-color: #127EE2;
+    border: 1px solid #17445E;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    text-decoration: none;
+    margin-top:20px;
+}
+.new-item ul li input[type="button"]:hover,
+.new-item ul li input[type="submit"]:hover {
+    background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+    background-color: #28739E;
 }

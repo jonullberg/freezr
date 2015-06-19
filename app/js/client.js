@@ -52,6 +52,7 @@ freezrApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $h
       redirectTo: '/create_user'
     });
     $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }])
 .run( function($rootScope, $location, foodData, auth) {
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
