@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "angular": "^1.4.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.12.4",
     "eat": "^0.1.1",
@@ -18,9 +19,9 @@
     "passport": "^0.2.2",
     "passport-http": "^0.2.2",
     "request": "^2.57.0",
-    "validator": "^3.40.1",
-    "angular": "^1.4.0",
-    "uuid": "^2.0.1"
+    "superagent": "^1.2.0",
+    "uuid": "^2.0.1",
+    "validator": "^3.40.1"
   },
   "devDependencies": {
     "angular-base64": "^2.0.5",
