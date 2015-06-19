@@ -1,11 +1,19 @@
 <section>
   <ul>
     <li data-ng-repeat='item in singleFood'>
-       <div class='item-wrapper' style="background-image: url({{item.imageURL}})"></div>
-      {{item.itemName}}
-      {{item.days + ' days to expiration'}}
-      {{item.qty}}
-      {{item.qtyType}}
+       <div class='item-wrapper' style="background-image: url({{item.imageURL}})">
+      <div class="item-name">{{item.itemName}}</div>
+<div class="item-name">{{item.qty}},{{item.quantityType}}</div>
+      <div class="item-location">{{item.storageType.substr(0,1).toUpperCase()}}</div>
+      <div class="item-expiry">
+            Expires in<br/>
+            <span class="item-days">{{item.days}}</span><br/>
+             days
+          </div>
+          </div>
+
+
+
       <button data-ng-if="!item.editing" data-ng-disabled="!item._id" data-ng-click="editItem(item)">Edit</button>
       <div data-single-item-edit-directive
             data-save="saveItem(item)"
