@@ -1,0 +1,9 @@
+<section data-ng-init="getRecipes(fakeData.recipes)">
+  <ul>
+    <li data-ng-repeat="recipe in recipes">
+      <a href={{recipe.source_url}}><img src="{{recipe.image_url}}" /></a>
+      <h4>{{recipe.title}}</h4>
+    </li>
+  </ul>
+  <div ng-transclude></div>
+</section>
