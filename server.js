@@ -6,6 +6,9 @@ var passport = require('passport');
 var app = express();
 
 //app.use(express.static(__dirname + '/build'));
+app.use(express.static(__dirname + '/app'));
+//heroku change
+app.use(express.static(__dirname + '/build'));
 
 process.env.APP_SECRET = process.env.APP_SECRET || 'changethischangethischangetis!';
 
@@ -16,9 +19,6 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/freezer_dev');
 
 app.use(passport.initialize());
 
-//app.use(express.static(__dirname + '/app'));
-//heroku change
-app.use(express.static(__dirname + '/build'));
 
 require('./lib/passport_strat.js')(passport);
 
