@@ -7,8 +7,11 @@ module.exports = function(app) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     var apiKey = '571b18999a49c04ce8f405766c96fd3b';
-    var foodObj = $cookies.getObject('singleFood');
-    var foodName = foodObj[0].itemName;
+    //name will be filled with cookie request
+    var foodName;
+
+
+
     $scope.errors = [];
 
     $scope.recipes = [];
@@ -47,6 +50,9 @@ module.exports = function(app) {
       }
 
       $cookies.putObject('singleFood', $scope.singleFood);
+      //need to assign foodName when cookie
+      //is grabbing the original object
+      foodName = $scope.singleFood[0].itemName;
     }
 
     makeCookie();
