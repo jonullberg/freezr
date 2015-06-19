@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('foodController', ['$scope', '$location', 'RESTResource', 'foodData', function($scope, $location, resource, foodData) {
+  app.controller('foodController', ['$scope', '$location', '$cookies', 'RESTResource', 'foodData', function($scope, $location, $cookies, resource, foodData) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     /**
@@ -27,6 +27,9 @@ module.exports = function(app) {
     $scope.singleFood = foodData.singleFood;
 
     $scope.saveSingleFood = function(thisItem) {
+      $cookies.putObject('singleFood', foodData.store.filter(function(item) {
+        return item._id === thisItem._id;
+      }));
       foodData.singleFood = foodData.store.filter(function(item) {
           return item._id === thisItem._id;
         });
