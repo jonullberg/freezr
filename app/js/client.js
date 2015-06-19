@@ -50,7 +50,7 @@ freezrApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $h
     .otherwise({
       redirectTo: '/create_user'
     });
-    // $httpProvider.defaults.useXDomain = true;
+    $httpProvider.defaults.useXDomain = true;
 }])
 .run( function($rootScope, $location, foodData, auth) {
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
