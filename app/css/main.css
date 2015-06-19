@@ -288,7 +288,7 @@ ul {
     border: 1px solid #00A6eF;
     /*float:right;*/
     position:relative;
-    top:-300px;
+    top:-200px;
 }
 .new-item ul li select,
 .new-item ul li input
