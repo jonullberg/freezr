@@ -7,3 +7,4 @@ require('./auth-controller-test');
 //  Service Tests
 require('./food_data_test.js');
 require('./auth_service_test.js');
+require('./rest_resource_test.js');

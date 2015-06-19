@@ -33,17 +33,10 @@ module.exports = function(app) {
 
   app.factory('RESTResource', ['$http', '$cookies', function($http, $cookies) {
 
-    /**
-     *
-     */
-
     return function(resourceName) {
       var token = $cookies.get('token');
       var username = $cookies.get('username');
 
-      /**
-       *
-       */
       $http.defaults.headers.common.token = token;
       $http.defaults.headers.common.username = username;
       return {
@@ -51,7 +44,6 @@ module.exports = function(app) {
         /**
          * A getAll() method for this service that performs an HTTP GET request for the given resource and uses a promise to handle success and error
          */
-
         getAll: function(callback) {
           $http.get('/api/' + resourceName)
             .success(handleSuccess(callback))
@@ -61,20 +53,28 @@ module.exports = function(app) {
         /**
          * A create() method for this service that performs an HTTP POST request for the given resource and uses a promise to handle success and error
          */
-
         create: function(resourceData, callback) {
           $http.post('/api/' + resourceName, resourceData)
             .success(handleSuccess(callback))
             .error(handleError(callback));
         },
 
+        /**
+         * A save method that performs an HTTP PUT request and handles success or error with a callback
+         * @param  {object}   resourceData The data to be updated
+         * @param  {Function} callback     A callback to handle success or error
+         */
         save: function(resourceData, callback) {
           $http.put('/api/' + resourceName + '/' + resourceData._id, resourceData)
             .success(handleSuccess(callback))
             .error(handleError(callback));
         },
 
-
+        /**
+         * A remove method that performs an HTTP delete request on the specified resource and recieves a callback to deal with success or failure
+         * @param  {object}   resourceData The item to be deleted
+         * @param  {Function} callback     A callback to handle sucess or failure
+         */
         remove: function(resourceData, callback) {
           $http.delete('/api/' + resourceName + '/' + resourceData._id)
             .success(handleSuccess(callback))

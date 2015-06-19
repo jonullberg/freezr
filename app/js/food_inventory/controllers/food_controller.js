@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('foodController', ['$scope', '$http', '$location', 'RESTResource', 'foodData', function($scope, $http, $location, resource, foodData) {
+  app.controller('foodController', ['$scope', '$location', '$cookies', 'RESTResource', 'foodData', function($scope, $location, $cookies, resource, foodData) {
     //can change name later, Item (single) Items (plural)
     var Item = resource('food_items');
     /**
@@ -27,7 +27,12 @@ module.exports = function(app) {
     $scope.singleFood = foodData.singleFood;
 
     $scope.saveSingleFood = function(thisItem) {
-      foodData.saveSingleFood(thisItem);
+      $cookies.putObject('singleFood', foodData.store.filter(function(item) {
+        return item._id === thisItem._id;
+      }));
+      foodData.singleFood = foodData.store.filter(function(item) {
+          return item._id === thisItem._id;
+        });
       $location.path('/item');
     };
 
@@ -55,6 +60,10 @@ module.exports = function(app) {
       });
     };
 
+    /**
+     * Finds the number of days left until expiration
+     * @param {array} arr Takes an array argument of objects with dates
+     */
     $scope.addDaysProperty = function(arr) {
       arr.forEach(function(item) {
         var thisDate = new Date(item.exp);
@@ -63,9 +72,8 @@ module.exports = function(app) {
     };
     /**
      * Grabs all the items from the server and then
-     * @param  {[type]} num   [description]
-     * @param  {[type]} start [description]
-     * @return {[type]}       [description]
+     * @param  {number} num   The number of items to take from Array
+     * @param  {number} start The starting point to start slicing items off of Array *Optional*
      */
     $scope.getDisplayedItems = function(num, start) {
       $scope.getAll(function(arr) {
@@ -78,6 +86,10 @@ module.exports = function(app) {
 
     $scope.getDisplayedItems(15); // jshint ignore:line
 
+    /**
+     * Takes an item and adds it to foodData service and displayedItems array, then makes create call to REST RESTResource
+     * @param  {object} item The item to be created
+     */
     $scope.createNewItem = function(item) {
       //insert imageURL to item object depending on itemType
       $scope.populateImages(item);
@@ -85,43 +97,28 @@ module.exports = function(app) {
       var newItem = item;
       item = null;
 
-      $scope.allItems.push(newItem);
+      $scope.displayedItems.push(newItem);
+      $scope.addDaysProperty($scope.displayedItems);
+      foodData.store.push(newItem);
       Item.create(newItem, function(err, data) {
         if (err) {
           return $scope.errors.push({msg: 'could not save item: ' + newItem.itemID});
         }
-        $scope.allItems.splice($scope.allItems.indexOf(newItem), 1, data);
+
       });
     };
 
+    /**
+     * Removes the item from the allItems array while also making remove() call for REST Resource
+     * @param  {object} item The item to be removed
+     */
     $scope.removeItem = function(item) {
-      //select item to delete
       $scope.allItems.splice($scope.allItems.indexOf(item), 1);
-      //delete item selected
       Item.remove(item, function(err) {
         if (err) {
           return $scope.errors.push({msg: 'could not remove item: ' + item});
         }
       });
-    };
-
-    /*
-      TODO: Need to decide on whether we will allow
-      editing of food items being inserted. If so, what
-      will we allow to edit?
-      TODO: This is related to food/inventory schema
-    */
-
-    $scope.saveItem = function(item) {
-      //add code here
-    };
-
-    $scope.editItem = function(item) {
-      //add code here
-    };
-
-    $scope.cancelEditing = function(item) {
-      //add code here
     };
 
     $scope.clearErrors = function() {
@@ -135,6 +132,8 @@ module.exports = function(app) {
       This is subject to change if time allows to give
       the user the option to upload their own image.
     */
+
+    //BELOW IMAGES NEED TO BE SAVED AND ADDED TO PROJECT UNDER lib/img
 
     $scope.populateImages = function(item) {
       if (item.itemType == 'vegetable') {
@@ -156,16 +155,6 @@ module.exports = function(app) {
       if (item.itemType == 'fish') {
         item.imageURL = 'http://knowyourliver.net/wp-content/uploads/2014/10/cooked-fish-images-kthc5gxn.jpg';
       }
-    };
-
-    /*
-      This function redirects the user to the single item view,
-      depending on which item they click (grabs item by ID,
-      and each item has its own button).
-    */
-
-    $scope.viewSingleItem = function() {
-      $location.path('/item');
     };
 
   }]);

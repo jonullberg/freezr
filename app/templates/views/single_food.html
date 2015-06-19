@@ -6,7 +6,25 @@
       {{item.days + ' days to expiration'}}
       {{item.qty}}
       {{item.qtyType}}
+      <button data-ng-if="!item.editing" data-ng-disabled="!item._id" data-ng-click="editItem(item)">Edit</button>
+      <div data-single-item-edit-directive
+            data-save="saveItem(item)"
+            data-button-text="'Save'"
+            data-ng-if="item.editing"
+            data-item="item">
+        <button class="btn" data-ng-click="cancelEditing(item)">Cancel</button>
+      </div>
     </li>
   </ul>
+  <h3 data-ng-click="toggleRecipes(item.itemName)">Get Recipes</h3>
+  <section data-ng-if="showRecipes === true">
+    <ul>
+      <li data-ng-repeat="recipe in displayedRecipes">
+        <a href={{recipe.source_url}}><img src={{recipe.image_url}} /></a>
+        <h4>{{recipe.title}}</h4>
+      </li>
+    </ul>
+  </section>
+
 </section>
 

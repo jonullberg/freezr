@@ -26,10 +26,10 @@ require('./auth/directives/sign_in_directive')(freezrApp);
 require('./auth/directives/create_user_directive')(freezrApp);
 require('./food_inventory/directives/inventory_form_directive')(freezrApp);
 require('./auth/directives/display_user_directive')(freezrApp);
+require('./recipes/directives/recipe_directive')(freezrApp);
 
 
-
-freezrApp.config(['$routeProvider', function($routeProvider) {
+freezrApp.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
   $routeProvider
     .when('/sign_in', {
       templateUrl: 'templates/views/auth.html',
@@ -50,6 +50,8 @@ freezrApp.config(['$routeProvider', function($routeProvider) {
     .otherwise({
       redirectTo: '/create_user'
     });
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }])
 .run( function($rootScope, $location, foodData, auth) {
   $rootScope.$on("$routeChangeStart", function(event, next, current) {
