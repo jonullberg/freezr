@@ -29,7 +29,17 @@ module.exports = function(app) {
     $scope.saveSingleFood = function(thisItem) {
       foodData.saveSingleFood(thisItem);
       $location.path('/item');
-    },
+    };
+
+    /**
+     * add form button controller
+     */
+
+    // $scope.addForm = $rootScope.addForm;
+    // $scope.showAddForm = function() {
+    //   console.log($scope.addForm);
+    //   $scope.addForm = !$scope.addForm;
+    // };
 
     /**
      * Grabs all the items from the server and puts it into an all items variable
@@ -43,14 +53,14 @@ module.exports = function(app) {
         foodData.storeData(data);
         callback(foodData.store);
       });
-    },
+    };
 
     $scope.addDaysProperty = function(arr) {
       arr.forEach(function(item) {
         var thisDate = new Date(item.exp);
         item.days = Math.round((thisDate.getTime() - Date.now()) / 86400000);
       });
-    },
+    };
     /**
      * Grabs all the items from the server and then
      * @param  {[type]} num   [description]
@@ -64,7 +74,7 @@ module.exports = function(app) {
         $scope.displayedItems = arr.slice(thisStart, num);
         $scope.addDaysProperty($scope.displayedItems);
       });
-    },
+    };
 
     $scope.getDisplayedItems(15); // jshint ignore:line
 

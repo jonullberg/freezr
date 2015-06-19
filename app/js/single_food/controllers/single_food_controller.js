@@ -11,7 +11,7 @@ module.exports = function(app) {
       $scope.singleFood = $cookies.getObject('singleFood');
     } else {
       $scope.singleFood = foodData.singleFood;
-    };
+    }
 
     $cookies.putObject('singleFood', $scope.singleFood);
 

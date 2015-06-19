@@ -28,6 +28,7 @@ require('./food_inventory/directives/inventory_form_directive')(freezrApp);
 require('./auth/directives/display_user_directive')(freezrApp);
 
 
+
 freezrApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/sign_in', {
